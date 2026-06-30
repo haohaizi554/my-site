@@ -2,14 +2,14 @@
     "name":  "compiler-principles-quiz",
     "version":  "1.0.0",
     "private":  true,
-    "description":  "鏈湴缂栬瘧鍘熺悊棰樺簱鑷祴宸ュ叿",
+    "description":  "本地编译原理题库自测工具",
     "type":  "commonjs",
     "scripts":  {
                     "parse":  "node tools/parse-questions.js \u0026\u0026 npm run protect:bank",
                     "validate":  "node tools/validate-questions.js",
-                    "check":  "node --check tools/parse-questions.js \u0026\u0026 node --check app/app.js \u0026\u0026 node --check app/security/loadProtectedQuestionBank.js \u0026\u0026 node --check app/security/runtimeGuard.js \u0026\u0026 node --check app/security/questionBank.worker.js \u0026\u0026 node --check scripts/protect-question-bank.mjs \u0026\u0026 node --check scripts/check-no-plaintext.mjs \u0026\u0026 node --check scripts/test-protected-bank.mjs \u0026\u0026 npm run check:no-plaintext \u0026\u0026 node scripts/test-protected-bank.mjs",
+                    "check":  "node --check tools/parse-questions.js \u0026\u0026 node --check app/app.js \u0026\u0026 node --check app/security/loadProtectedQuestionBank.js \u0026\u0026 node --check app/security/runtimeGuard.js \u0026\u0026 node --check app/security/questionBank.worker.js \u0026\u0026 node --check scripts/protect-question-bank.mjs \u0026\u0026 node --check scripts/check-no-plaintext.mjs \u0026\u0026 node --check scripts/test-protected-bank.mjs \u0026\u0026 node --check scripts/build-production.mjs \u0026\u0026 npm run check:no-plaintext \u0026\u0026 node scripts/test-protected-bank.mjs",
                     "protect:bank":  "node scripts/protect-question-bank.mjs",
-                    "build":  "npm run protect:bank",
+                    "build":  "npm run protect:bank \u0026\u0026 node scripts/build-production.mjs",
                     "check:no-plaintext":  "node scripts/check-no-plaintext.mjs"
                 }
 }

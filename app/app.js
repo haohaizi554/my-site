@@ -1661,8 +1661,9 @@ async function boot() {
 
   init();
   if (!questions.length) {
-    showPassiveNotice("?????????????");
+    showPassiveNotice("小 λ 暂时没抱住题库，请刷新页面再试一次～");
   }
 }
 
 boot();
+
