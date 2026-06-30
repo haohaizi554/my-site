@@ -1,0 +1,12 @@
+{
+  "name": "compiler-principles-quiz",
+  "version": "1.0.0",
+  "private": true,
+  "description": "本地编译原理题库自测工具",
+  "type": "commonjs",
+  "scripts": {
+    "parse": "node tools/parse-questions.js",
+    "validate": "node tools/validate-questions.js",
+    "check": "node --check tools/parse-questions.js && node --check tools/validate-questions.js && node --check app/app.js && npm run validate"
+  }
+}

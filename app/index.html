@@ -1,0 +1,181 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>编译原理自测</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <aside class="side">
+        <div class="brand">
+          <span class="brand-mark">λ</span>
+          <div>
+            <h1>编译原理自测</h1>
+            <p id="bankMeta">载入题库中</p>
+          </div>
+        </div>
+
+        <nav class="nav" aria-label="练习导航">
+          <div class="nav-group">
+            <span class="side-label">练习</span>
+            <button class="nav-btn active" data-action="mode" data-mode="sequential" aria-current="page">
+              <span class="nav-icon">序</span>
+              <span class="nav-title">顺序练习</span>
+            </button>
+            <button class="nav-btn" data-action="mode" data-mode="random">
+              <span class="nav-icon">随</span>
+              <span class="nav-title">随机 20 题</span>
+            </button>
+            <button class="nav-btn" data-action="mode" data-mode="wrong">
+              <span class="nav-icon">错</span>
+              <span class="nav-title">错题复习</span>
+              <span class="nav-count" id="wrongNavCount">0</span>
+            </button>
+            <button class="nav-btn" data-action="mode" data-mode="exam">
+              <span class="nav-icon">考</span>
+              <span class="nav-title">模拟考试 50 题</span>
+            </button>
+          </div>
+
+          <div class="nav-group">
+            <span class="side-label">分析</span>
+            <button class="nav-btn" data-action="view" data-view="stats">
+              <span class="nav-icon">统</span>
+              <span class="nav-title">统计面板</span>
+            </button>
+          </div>
+        </nav>
+
+        <div class="section-filter">
+          <label class="side-label" for="sectionSelect">章节</label>
+          <select id="sectionSelect"></select>
+          <div class="cute-select" id="sectionCuteSelect">
+            <button class="cute-select-trigger" id="sectionCuteTrigger" type="button" aria-haspopup="listbox" aria-expanded="false">
+              <span id="sectionCuteValue">全部</span>
+              <span class="cute-select-arrow" aria-hidden="true">⌄</span>
+            </button>
+            <div class="cute-select-menu hidden" id="sectionCuteMenu" role="listbox"></div>
+          </div>
+        </div>
+
+        <div class="side-actions">
+          <button class="reset-btn" id="resetProgress">重置记录</button>
+        </div>
+      </aside>
+
+      <main class="main">
+        <section class="dashboard" id="dashboard">
+          <div class="metric">
+            <span>已做</span>
+            <strong id="attemptedCount">0</strong>
+          </div>
+          <div class="metric">
+            <span>正确率</span>
+            <strong id="accuracyRate">0%</strong>
+          </div>
+          <div class="metric">
+            <span>错题</span>
+            <strong id="wrongCount">0</strong>
+          </div>
+          <div class="metric">
+            <span>当前题组</span>
+            <strong id="queueCount">0</strong>
+          </div>
+        </section>
+
+        <section class="quiz-panel" id="quizPanel">
+          <div class="quiz-layout">
+            <div class="question-workspace">
+              <div class="question-top">
+                <div>
+                  <span class="pill" id="questionSection">章节</span>
+                  <span class="pill light" id="questionType">题型</span>
+                </div>
+                <div class="progress-text" id="progressText">0 / 0</div>
+              </div>
+
+              <h2 id="questionTitle">准备开始</h2>
+              <div class="prompt" id="questionPrompt"></div>
+
+              <div class="options" id="options"></div>
+
+              <textarea id="longAnswer" class="answer-box" placeholder="在这里写你的思路，之后对照参考答案自评。"></textarea>
+
+              <div class="actions">
+                <button id="prevQuestion" class="ghost">上一题</button>
+                <button id="markQuestion" class="ghost">标记本题</button>
+                <button id="clearAnswer" class="ghost">清除答案</button>
+                <button id="nextQuestion" class="ghost">下一题</button>
+                <button id="submitAnswer" class="primary">交卷并看结果</button>
+                <button id="showReference" class="secondary">查看参考答案</button>
+              </div>
+
+              <div class="self-grade" id="selfGrade">
+                <button data-grade="0">不会</button>
+                <button data-grade="1">半会</button>
+                <button data-grade="2">掌握</button>
+              </div>
+
+              <div class="feedback" id="feedback"></div>
+            </div>
+
+            <aside class="attempt-panel" aria-label="答题卡">
+              <div class="attempt-head">
+                <div>
+                  <strong>答题卡</strong>
+                  <span id="attemptStatusText">0 / 0 已答</span>
+                </div>
+                <button class="reset-btn" id="jumpFirstUnanswered">未答题</button>
+              </div>
+              <div class="attempt-grid" id="attemptGrid"></div>
+              <div class="attempt-legend">
+                <span><i class="dot current"></i>当前</span>
+                <span><i class="dot answered"></i>已答</span>
+                <span><i class="dot flagged"></i>标记</span>
+                <span><i class="dot wrong"></i>错题</span>
+              </div>
+            </aside>
+          </div>
+        </section>
+
+        <div class="submit-overlay hidden" id="submitOverlay">
+          <div class="submit-dialog" role="dialog" aria-modal="true" aria-labelledby="submitDialogTitle">
+            <h2 id="submitDialogTitle">交卷确认</h2>
+            <p id="submitDialogText"></p>
+            <div class="submit-dialog-actions">
+              <button class="ghost" id="cancelSubmit">返回继续做</button>
+              <button class="primary" id="confirmSubmit">确认交卷</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="cute-overlay hidden" id="cuteDialog" aria-hidden="true">
+          <div class="cute-dialog" role="dialog" aria-modal="true" aria-labelledby="cuteDialogTitle" aria-describedby="cuteDialogText">
+            <div class="cute-mascot" aria-hidden="true">λ</div>
+            <p class="cute-kicker">小 λ 提醒你</p>
+            <h2 id="cuteDialogTitle">确认一下</h2>
+            <p id="cuteDialogText"></p>
+            <div class="cute-dialog-actions">
+              <button class="ghost" id="cuteDialogCancel">先等等</button>
+              <button class="primary" id="cuteDialogConfirm">好的</button>
+            </div>
+          </div>
+        </div>
+
+        <section class="stats-panel hidden" id="statsPanel">
+          <div class="stats-head">
+            <h2>统计面板</h2>
+            <button class="ghost" id="backToQuiz">返回做题</button>
+          </div>
+          <div id="sectionStats" class="section-stats"></div>
+          <div id="wrongList" class="wrong-list"></div>
+        </section>
+      </main>
+    </div>
+
+    <script src="./questions.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
