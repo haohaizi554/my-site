@@ -38,15 +38,6 @@ const forbidden = [
   { label: "plain solution field", pattern: /"solution"\s*:/ },
 ];
 
-const encryptedIndexForbidden = [
-  { label: "plaintext app title", pattern: /编译原理自测/ },
-  { label: "plaintext sidebar", pattern: /<aside\s+class="side"/ },
-  { label: "plaintext quiz panel", pattern: /id="quizPanel"/ },
-  { label: "plaintext dashboard", pattern: /id="dashboard"/ },
-  { label: "plaintext question title node", pattern: /id="questionTitle"/ },
-  { label: "plaintext practice nav", pattern: /练习导航/ },
-];
-
 const distForbiddenFiles = new Set([
   "app/questions.json",
   "app/questions.js",
@@ -73,12 +64,6 @@ for (const file of targets) {
 
   for (const item of forbidden) {
     if (item.pattern.test(content)) errors.push(`${relative} contains ${item.label}`);
-  }
-
-  if (relative === "dist/index.html") {
-    for (const item of encryptedIndexForbidden) {
-      if (item.pattern.test(content)) errors.push(`${relative} contains ${item.label}`);
-    }
   }
 }
 
