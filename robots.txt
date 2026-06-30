@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /
+
+# Static quiz site: indexing and automated scraping are intentionally discouraged.

@@ -4,7 +4,9 @@ const STORAGE_APP_ID = "compiler-principles-quiz";
 const STORAGE_SCHEMA_VERSION = 2;
 const CANONICAL_HOST = "www.haohaizi554.cloud";
 const GITHUB_PAGES_HOST = "haohaizi554.github.io";
+const PROTECTED_HOSTS = new Set([CANONICAL_HOST, GITHUB_PAGES_HOST]);
 redirectToCanonicalHost();
+installPublicSiteProtection();
 const STORAGE_SCOPE = getStorageScope();
 const legacyProgressStorageKeys = [
   `${STORAGE_APP_ID}:personal-progress-v${STORAGE_SCHEMA_VERSION}`,
@@ -60,6 +62,43 @@ function redirectToCanonicalHost() {
   target.hostname = CANONICAL_HOST;
   target.pathname = target.pathname.replace(/^\/my-site(?=\/|$)/, "") || "/";
   window.location.replace(target.toString());
+}
+
+function isProtectedPublicHost() {
+  return PROTECTED_HOSTS.has(window.location.hostname);
+}
+
+function installPublicSiteProtection() {
+  if (!isProtectedPublicHost()) return;
+
+  const guardMessage = "??????????????????????";
+  const blockedShortcut = (event) => {
+    const key = String(event.key || "").toLowerCase();
+    return key === "f12"
+      || (event.ctrlKey && event.shiftKey && ["i", "j", "c", "k"].includes(key))
+      || (event.ctrlKey && ["u", "s"].includes(key));
+  };
+
+  document.addEventListener("keydown", (event) => {
+    if (!blockedShortcut(event)) return;
+    event.preventDefault();
+    event.stopPropagation();
+    showNotice(guardMessage);
+  }, true);
+
+  document.addEventListener("contextmenu", (event) => {
+    if (event.target.closest("textarea,input,select")) return;
+    event.preventDefault();
+    showNotice(guardMessage);
+  });
+
+  window.setInterval(() => {
+    const widthGap = Math.abs(window.outerWidth - window.innerWidth);
+    const heightGap = Math.abs(window.outerHeight - window.innerHeight);
+    const likelyOpen = (window.outerWidth > 1100 && widthGap > 280)
+      || (window.outerHeight > 850 && heightGap > 300);
+    document.body.classList.toggle("privacy-locked", likelyOpen);
+  }, 1800);
 }
 
 function getStorageScope() {

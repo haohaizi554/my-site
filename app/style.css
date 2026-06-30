@@ -1616,3 +1616,32 @@ button:disabled {
   line-height: 1.45;
 }
 
+
+body.privacy-locked .quiz-layout {
+  position: relative;
+}
+
+body.privacy-locked .question-workspace,
+body.privacy-locked .attempt-panel {
+  filter: blur(8px);
+  pointer-events: none;
+  user-select: none;
+}
+
+body.privacy-locked .quiz-layout::after {
+  content: "??????????????????";
+  position: absolute;
+  inset: 18px;
+  z-index: 30;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 143, 179, 0.68);
+  border-radius: 34px;
+  background:
+    radial-gradient(circle at 18% 22%, rgba(255, 244, 181, 0.86), transparent 34%),
+    linear-gradient(135deg, rgba(255, 231, 240, 0.92), rgba(222, 250, 246, 0.92));
+  color: #3b3042;
+  font-size: clamp(18px, 2vw, 28px);
+  font-weight: 900;
+  text-align: center;
+}
