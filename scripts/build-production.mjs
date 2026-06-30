@@ -254,6 +254,42 @@ function encryptedIndexHtml({ bundle, shape }) {
     return new Uint8Array(decrypted);
   }
 
+  function loadScriptElement(sourceScript) {
+    return new Promise((resolve, reject) => {
+      const script = document.createElement("script");
+      for (const attribute of sourceScript.attributes) {
+        script.setAttribute(attribute.name, attribute.value);
+      }
+
+      if (sourceScript.src) {
+        script.async = false;
+        script.onload = () => resolve();
+        script.onerror = () => reject(new Error(genericMessage));
+        script.src = sourceScript.getAttribute("src");
+        document.body.appendChild(script);
+        return;
+      }
+
+      script.textContent = sourceScript.textContent || "";
+      document.body.appendChild(script);
+      resolve();
+    });
+  }
+
+  async function mountHtml(html) {
+    const parsed = new DOMParser().parseFromString(html, "text/html");
+    const scripts = Array.from(parsed.querySelectorAll("script"));
+    scripts.forEach((script) => script.remove());
+
+    document.documentElement.lang = parsed.documentElement.lang || "zh-CN";
+    document.head.replaceChildren(...Array.from(parsed.head.childNodes));
+    document.body.replaceChildren(...Array.from(parsed.body.childNodes));
+
+    for (const script of scripts) {
+      await loadScriptElement(script);
+    }
+  }
+
   async function boot() {
     if (!crypto || !crypto.subtle) fail();
     const manifest = vault.v;
@@ -275,9 +311,7 @@ function encryptedIndexHtml({ bundle, shape }) {
       for (let index = layers.length - 1; index >= 0; index -= 1) current = await decryptLayer(current, layers[index], material);
       const html = new TextDecoder().decode(current);
       current.fill(0); material.fill(0);
-      document.open();
-      document.write(html);
-      document.close();
+      await mountHtml(html);
     } catch {
       fail([current, material]);
     }
@@ -339,3 +373,4 @@ if (leakedSources.length) {
 }
 
 console.log(JSON.stringify({ output: "dist", files: publishedFiles.length, sourcemaps: 0, plaintextSources: 0, encryptedHtml: true, shellLayers: shellLayerCount }, null, 2));
+
