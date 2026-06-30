@@ -1617,31 +1617,93 @@ button:disabled {
 }
 
 
+.guard-toast {
+  position: fixed;
+  left: 50%;
+  top: 22px;
+  z-index: 80;
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr);
+  gap: 12px;
+  width: min(440px, calc(100vw - 36px));
+  padding: 14px 16px;
+  border: 1px solid rgba(255, 176, 205, 0.72);
+  border-radius: 28px 28px 30px 30px;
+  background:
+    radial-gradient(circle at 12% 10%, rgba(255, 255, 255, 0.96), transparent 38%),
+    linear-gradient(135deg, rgba(255, 241, 190, 0.96), rgba(255, 220, 234, 0.94), rgba(205, 246, 239, 0.94));
+  color: #3a3042;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -18px) scale(0.96);
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.guard-toast.show {
+  opacity: 1;
+  transform: translate(-50%, 0) scale(1);
+}
+
+.guard-toast-mark {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 18px 18px 22px 22px;
+  background: linear-gradient(135deg, rgba(255, 145, 187, 0.88), rgba(83, 178, 170, 0.9));
+  color: #fff;
+  font-size: 28px;
+  font-weight: 950;
+}
+
+.guard-toast-copy {
+  display: grid;
+  align-content: center;
+  gap: 3px;
+  min-width: 0;
+}
+
+.guard-toast-copy strong {
+  font-size: 16px;
+  font-weight: 950;
+}
+
+.guard-toast-copy span {
+  color: rgba(69, 59, 78, 0.76);
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1.45;
+}
+
 body.privacy-locked .quiz-layout {
   position: relative;
 }
 
 body.privacy-locked .question-workspace,
 body.privacy-locked .attempt-panel {
-  filter: blur(8px);
+  filter: blur(7px) saturate(0.9);
   pointer-events: none;
   user-select: none;
 }
 
 body.privacy-locked .quiz-layout::after {
-  content: "??????????????????";
+  content: attr(data-guard-label);
   position: absolute;
   inset: 18px;
   z-index: 30;
   display: grid;
   place-items: center;
-  border: 1px solid rgba(255, 143, 179, 0.68);
-  border-radius: 34px;
+  padding: 28px;
+  border: 1px solid rgba(255, 176, 205, 0.78);
+  border-radius: 38px;
   background:
-    radial-gradient(circle at 18% 22%, rgba(255, 244, 181, 0.86), transparent 34%),
-    linear-gradient(135deg, rgba(255, 231, 240, 0.92), rgba(222, 250, 246, 0.92));
+    radial-gradient(circle at 18% 22%, rgba(255, 245, 180, 0.9), transparent 34%),
+    radial-gradient(circle at 86% 12%, rgba(255, 199, 224, 0.74), transparent 30%),
+    linear-gradient(135deg, rgba(255, 246, 232, 0.94), rgba(225, 251, 247, 0.94));
   color: #3b3042;
   font-size: clamp(18px, 2vw, 28px);
-  font-weight: 900;
+  font-weight: 950;
+  line-height: 1.5;
   text-align: center;
 }
+

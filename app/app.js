@@ -1,5 +1,5 @@
-﻿const bank = window.QUESTION_BANK || { questions: [] };
-const questions = bank.questions || [];
+﻿let bank = { questions: [] };
+let questions = [];
 const STORAGE_APP_ID = "compiler-principles-quiz";
 const STORAGE_SCHEMA_VERSION = 2;
 const CANONICAL_HOST = "www.haohaizi554.cloud";
@@ -71,34 +71,42 @@ function isProtectedPublicHost() {
 function installPublicSiteProtection() {
   if (!isProtectedPublicHost()) return;
 
-  const guardMessage = "??????????????????????";
-  const blockedShortcut = (event) => {
-    const key = String(event.key || "").toLowerCase();
-    return key === "f12"
-      || (event.ctrlKey && event.shiftKey && ["i", "j", "c", "k"].includes(key))
-      || (event.ctrlKey && ["u", "s"].includes(key));
-  };
+  const guardTitle = "\u5c0f \u03bb \u62b1\u4f4f\u9898\u5e93\u5566";
+  const guardMessage = "\u8fd9\u91cc\u662f\u5237\u9898\u5c0f\u7a9d\uff0c\u4e0d\u5f00\u653e\u76f4\u63a5\u6252\u9898\u54e6\u3002\u7ee7\u7eed\u7b54\u9898\u5c31\u597d\u5566\u3002";
+  const guardLockedLabel = "\u5c0f \u03bb \u6b63\u5728\u4fdd\u62a4\u9898\u5e93\uff5e\u5173\u6389\u8c03\u8bd5\u9762\u677f\u540e\u7ee7\u7eed\u5237\u9898";
+  document.body.dataset.guardLabel = guardLockedLabel;
+  const quizLayout = document.querySelector(".quiz-layout");
+  if (quizLayout) quizLayout.dataset.guardLabel = guardLockedLabel;
 
-  document.addEventListener("keydown", (event) => {
-    if (!blockedShortcut(event)) return;
-    event.preventDefault();
-    event.stopPropagation();
-    showNotice(guardMessage);
-  }, true);
+  if (typeof window.installQuizRuntimeGuard === "function") {
+    window.installQuizRuntimeGuard({
+      onNotice: () => showGuardNotice(guardTitle, guardMessage),
+      onLockChange: (locked) => document.body.classList.toggle("privacy-locked", locked),
+    });
+  }
+}
 
-  document.addEventListener("contextmenu", (event) => {
-    if (event.target.closest("textarea,input,select")) return;
-    event.preventDefault();
-    showNotice(guardMessage);
-  });
+function showGuardNotice(title, message) {
+  let notice = document.querySelector(".guard-toast");
+  if (!notice) {
+    notice = document.createElement("div");
+    notice.className = "guard-toast";
+    notice.setAttribute("role", "status");
+    notice.innerHTML = `
+      <span class="guard-toast-mark" aria-hidden="true">\u03bb</span>
+      <span class="guard-toast-copy">
+        <strong></strong>
+        <span></span>
+      </span>
+    `;
+    document.body.appendChild(notice);
+  }
 
-  window.setInterval(() => {
-    const widthGap = Math.abs(window.outerWidth - window.innerWidth);
-    const heightGap = Math.abs(window.outerHeight - window.innerHeight);
-    const likelyOpen = (window.outerWidth > 1100 && widthGap > 280)
-      || (window.outerHeight > 850 && heightGap > 300);
-    document.body.classList.toggle("privacy-locked", likelyOpen);
-  }, 1800);
+  notice.querySelector("strong").textContent = title;
+  notice.querySelector(".guard-toast-copy > span").textContent = message;
+  notice.classList.add("show");
+  clearTimeout(showGuardNotice.timer);
+  showGuardNotice.timer = setTimeout(() => notice.classList.remove("show"), 2600);
 }
 
 function getStorageScope() {
@@ -1641,10 +1649,20 @@ function init() {
   }
 }
 
-init();
+async function boot() {
+  try {
+    if (typeof window.loadProtectedQuestionBank !== "function") throw new Error("loader unavailable");
+    bank = await window.loadProtectedQuestionBank();
+    questions = Array.isArray(bank.questions) ? bank.questions : [];
+  } catch {
+    bank = { questions: [] };
+    questions = [];
+  }
 
+  init();
+  if (!questions.length) {
+    showPassiveNotice("?????????????");
+  }
+}
 
-
-
-
-
+boot();

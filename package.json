@@ -5,8 +5,11 @@
   "description": "本地编译原理题库自测工具",
   "type": "commonjs",
   "scripts": {
-    "parse": "node tools/parse-questions.js",
+    "parse": "node tools/parse-questions.js && npm run protect:bank",
     "validate": "node tools/validate-questions.js",
-    "check": "node --check tools/parse-questions.js && node --check tools/validate-questions.js && node --check app/app.js && npm run validate"
+    "check": "node --check tools/parse-questions.js && node --check tools/validate-questions.js && node --check app/app.js && node --check app/security/loadProtectedQuestionBank.js && node --check app/security/runtimeGuard.js && node --check scripts/check-no-plaintext.mjs && npm run validate && npm run check:no-plaintext",
+    "protect:bank": "node scripts/protect-question-bank.mjs",
+    "build": "npm run protect:bank",
+    "check:no-plaintext": "node scripts/check-no-plaintext.mjs"
   }
 }

@@ -242,45 +242,9 @@ const payload = {
   questions,
 };
 
-function buildBrowserQuestionBundle(payload) {
-  const keyBytes = Buffer.from('lambda-quiz-guard-v2', 'utf8');
-  const input = Buffer.from(JSON.stringify(payload), 'utf8');
-  const encoded = Buffer.from(input.map((byte, index) => (
-    byte ^ keyBytes[index % keyBytes.length] ^ ((index * 31 + 17) & 255)
-  ))).toString('base64');
-  const chunks = [];
-  for (let index = 0; index < encoded.length; index += 96) {
-    chunks.push(encoded.slice(index, index + 96));
-  }
-
-  return [
-    '(() => {',
-    '  "use strict";',
-    `  const _chunks = ${JSON.stringify(chunks.reverse())};`,
-    `  const _key = ${JSON.stringify(Array.from(keyBytes))};`,
-    '  const _encoded = _chunks.reverse().join("");',
-    '  const _binary = atob(_encoded);',
-    '  const _bytes = Uint8Array.from(_binary, (char, index) => char.charCodeAt(0) ^ _key[index % _key.length] ^ ((index * 31 + 17) & 255));',
-    '  const _json = new TextDecoder().decode(_bytes);',
-    '  const _freeze = (value) => {',
-    '    if (!value || typeof value !== "object" || Object.isFrozen(value)) return value;',
-    '    Object.freeze(value);',
-    '    Object.values(value).forEach(_freeze);',
-    '    return value;',
-    '  };',
-    '  Object.defineProperty(window, "QUESTION_BANK", {',
-    '    value: _freeze(JSON.parse(_json)),',
-    '    configurable: false,',
-    '    writable: false,',
-    '  });',
-    '})();',
-    '',
-  ].join('\n');
-}
-
 fs.mkdirSync(appDir, { recursive: true });
 fs.writeFileSync(jsonPath, `${JSON.stringify(payload, null, 2)}\n`, "utf8");
-fs.writeFileSync(jsPath, buildBrowserQuestionBundle(payload), "utf8");
+fs.writeFileSync(jsPath, "/* Run npm run protect:bank to generate app/generated/protected-question-bank.generated.js. */\n", "utf8");
 
 const report = `# 自测脚本题库解析报告
 
