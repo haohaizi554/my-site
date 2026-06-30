@@ -2,6 +2,9 @@
 const questions = bank.questions || [];
 const STORAGE_APP_ID = "compiler-principles-quiz";
 const STORAGE_SCHEMA_VERSION = 2;
+const CANONICAL_HOST = "www.haohaizi554.cloud";
+const GITHUB_PAGES_HOST = "haohaizi554.github.io";
+redirectToCanonicalHost();
 const STORAGE_SCOPE = getStorageScope();
 const legacyProgressStorageKeys = [
   `${STORAGE_APP_ID}:personal-progress-v${STORAGE_SCHEMA_VERSION}`,
@@ -48,6 +51,16 @@ const state = {
 };
 
 const $ = (id) => document.getElementById(id);
+
+function redirectToCanonicalHost() {
+  if (window.location.hostname !== GITHUB_PAGES_HOST) return;
+
+  const target = new URL(window.location.href);
+  target.protocol = "https:";
+  target.hostname = CANONICAL_HOST;
+  target.pathname = target.pathname.replace(/^\/my-site(?=\/|$)/, "") || "/";
+  window.location.replace(target.toString());
+}
 
 function getStorageScope() {
   const clean = (value) => String(value || "")
@@ -1550,6 +1563,7 @@ function init() {
 }
 
 init();
+
 
 
 
