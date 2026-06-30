@@ -23,6 +23,8 @@ const RANDOM_SIZE = 20;
 const EXAM_SIZE = 50;
 const EXAM_TYPE_ORDER = ["single_choice", "multi_choice", "true_false", "long_answer"];
 const AUTO_GRADED_TYPES = new Set(["single_choice", "multi_choice", "true_false"]);
+const RANDOMIZED_OPTION_TYPES = new Set(["single_choice", "multi_choice"]);
+const DISPLAY_OPTION_KEYS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 const EXAM_TYPE_WEIGHTS = {
   single_choice: 0.44,
   multi_choice: 0.14,
@@ -45,6 +47,7 @@ const state = {
   progress: loadProgress(),
   draftAnswers: {},
   draftLongAnswers: {},
+  optionOrders: {},
   flagged: {},
   results: {},
   sessionSubmitted: false,
@@ -249,6 +252,7 @@ function saveActiveAttempt() {
     queueIds: state.queue.map((question) => question.id),
     draftAnswers: state.draftAnswers,
     draftLongAnswers: state.draftLongAnswers,
+    optionOrders: state.optionOrders,
     flagged: state.flagged,
     savedAt: new Date().toISOString(),
   };
@@ -267,7 +271,8 @@ function restoreActiveAttempt() {
     if (!payload || !Array.isArray(payload.queueIds) || !payload.queueIds.length) return false;
 
     const map = questionById();
-    const queue = payload.queueIds.map((id) => map.get(id)).filter(Boolean);
+    state.optionOrders = normalizeOptionOrders(payload.optionOrders);
+    const queue = payload.queueIds.map((id) => map.get(id)).filter(Boolean).map(prepareQuestionForQueue);
     if (queue.length !== payload.queueIds.length) return false;
 
     state.mode = payload.mode || "sequential";
@@ -361,6 +366,7 @@ async function importLearningArchive(file) {
 
   state.draftAnswers = {};
   state.draftLongAnswers = {};
+  state.optionOrders = {};
   state.flagged = {};
   state.results = {};
   state.sessionSubmitted = false;
@@ -610,6 +616,84 @@ function shuffle(list) {
   return copy;
 }
 
+function normalizeOptionOrders(value) {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return {};
+  return Object.fromEntries(
+    Object.entries(value)
+      .filter(([, order]) => Array.isArray(order))
+      .map(([id, order]) => [id, order.map((item) => String(item))])
+  );
+}
+
+function shouldRandomizeOptions(question) {
+  return RANDOMIZED_OPTION_TYPES.has(question?.type) && Array.isArray(question.options) && question.options.length > 1;
+}
+
+function optionOrderFor(question) {
+  const sourceKeys = question.options.map((option) => option.key);
+  const saved = state.optionOrders[question.id];
+  const validSaved = Array.isArray(saved)
+    && saved.length === sourceKeys.length
+    && sourceKeys.every((key) => saved.includes(key));
+
+  if (validSaved) return saved;
+
+  const order = shuffle(sourceKeys);
+  state.optionOrders[question.id] = order;
+  return order;
+}
+
+function remapAnswerToDisplayKeys(question, displayOptions) {
+  const keyMap = new Map(displayOptions.map((option) => [option.originalKey || option.key, option.key]));
+  const answerKeys = String(question.answer || "")
+    .split("")
+    .map((key) => keyMap.get(key))
+    .filter(Boolean);
+
+  return answerKeys
+    .sort((left, right) => DISPLAY_OPTION_KEYS.indexOf(left) - DISPLAY_OPTION_KEYS.indexOf(right))
+    .join("");
+}
+
+function prepareQuestionForQueue(question) {
+  if (!shouldRandomizeOptions(question)) return question;
+
+  const byKey = new Map(question.options.map((option) => [option.key, option]));
+  const displayOptions = optionOrderFor(question).map((originalKey, index) => {
+    const source = byKey.get(originalKey);
+    return {
+      ...source,
+      originalKey,
+      key: DISPLAY_OPTION_KEYS[index] || originalKey,
+    };
+  });
+
+  return {
+    ...question,
+    originalAnswer: question.answer,
+    options: displayOptions,
+    answer: remapAnswerToDisplayKeys(question, displayOptions),
+  };
+}
+
+function draftAnsweredQuestionIds() {
+  return state.queue
+    .filter((question) => {
+      if (isAutoGraded(question)) return Boolean(state.draftAnswers[question.id]);
+      return Boolean((state.draftLongAnswers[question.id] || "").trim());
+    })
+    .map((question) => question.id);
+}
+
+function attemptedQuestionIds() {
+  const ids = new Set(
+    Object.entries(state.progress)
+      .filter(([, value]) => Number(value?.attempts) > 0)
+      .map(([id]) => id)
+  );
+  draftAnsweredQuestionIds().forEach((id) => ids.add(id));
+  return ids;
+}
 function groupBy(list, keyOf) {
   return list.reduce((groups, item) => {
     const key = keyOf(item);
@@ -704,23 +788,26 @@ function buildExamQueue(list) {
 
 function buildQueue() {
   const list = filteredQuestions();
+  let queue;
   if (state.mode === "random") {
-    state.queue = shuffle(list).slice(0, Math.min(RANDOM_SIZE, list.length));
+    queue = shuffle(list).slice(0, Math.min(RANDOM_SIZE, list.length));
   } else if (state.mode === "exam") {
-    state.queue = buildExamQueue(list);
+    queue = buildExamQueue(list);
   } else {
-    state.queue = [...list];
+    queue = [...list];
   }
 
   state.index = 0;
   state.selected = new Set();
   state.draftAnswers = {};
   state.draftLongAnswers = {};
+  state.optionOrders = {};
   state.flagged = {};
   state.results = {};
   state.sessionSubmitted = false;
   state.sessionSummary = null;
   state.restoredAttempt = false;
+  state.queue = queue.map(prepareQuestionForQueue);
   clearActiveAttempt();
   renderAll();
   saveActiveAttempt();
@@ -813,7 +900,7 @@ function recordLongAnswer(question, grade) {
 
 function renderDashboard() {
   const values = Object.values(state.progress);
-  const attempted = values.filter((item) => item.attempts > 0).length;
+  const attempted = attemptedQuestionIds().size;
   const totalAttempts = values.reduce((sum, item) => sum + item.attempts, 0);
   const correctAttempts = values.reduce((sum, item) => sum + item.correct, 0);
   const wrong = values.filter((item) => item.isWrongBook).length;
@@ -1666,4 +1753,6 @@ async function boot() {
 }
 
 boot();
+
+
 

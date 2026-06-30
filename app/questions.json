@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-30T08:26:33.332Z",
+  "generatedAt": "2026-06-30T23:02:51.411Z",
   "source": "编译原理.md",
   "version": 1,
   "total": 172,
@@ -393,7 +393,7 @@
       "section": "编译基础",
       "type": "single_choice",
       "title": "语法树中某子树叶子节点组成的 β 是什么？",
-      "prompt": "在语法树中，若子树的根节点为 A，其所有叶子节点从左到右排列为 β，则 β 相对于 A 是（ ）。",
+      "prompt": "在语法树中，若**子树**的根节点为 A，其所有叶子节点从左到右排列为 β，则 β 相对于 A 是（ ）。",
       "options": [
         {
           "key": "A",
@@ -921,7 +921,7 @@
         },
         {
           "key": "B",
-          "text": "语法分析"
+          "text": "语法分析\n-"
         },
         {
           "key": "C",
@@ -975,7 +975,7 @@
         "前后端"
       ],
       "difficulty": 1,
-      "sourceLine": 553
+      "sourceLine": 554
     },
     {
       "id": "basic-029",
@@ -1010,7 +1010,7 @@
         "文法"
       ],
       "difficulty": 1,
-      "sourceLine": 572
+      "sourceLine": 573
     },
     {
       "id": "basic-030",
@@ -1045,7 +1045,7 @@
         "语法树"
       ],
       "difficulty": 1,
-      "sourceLine": 591
+      "sourceLine": 592
     },
     {
       "id": "basic-031",
@@ -1080,7 +1080,7 @@
         "解释器"
       ],
       "difficulty": 1,
-      "sourceLine": 610
+      "sourceLine": 611
     },
     {
       "id": "lexer-001",
@@ -1113,7 +1113,7 @@
         "词法分析"
       ],
       "difficulty": 1,
-      "sourceLine": 631
+      "sourceLine": 632
     },
     {
       "id": "lexer-002",
@@ -1146,7 +1146,7 @@
         "词法分析"
       ],
       "difficulty": 1,
-      "sourceLine": 650
+      "sourceLine": 651
     },
     {
       "id": "lexer-003",
@@ -1179,7 +1179,7 @@
         "词法分析"
       ],
       "difficulty": 1,
-      "sourceLine": 675
+      "sourceLine": 676
     },
     {
       "id": "lexer-004",
@@ -1213,7 +1213,7 @@
         "正规式"
       ],
       "difficulty": 1,
-      "sourceLine": 694
+      "sourceLine": 695
     },
     {
       "id": "lexer-005",
@@ -1247,7 +1247,7 @@
         "正规式"
       ],
       "difficulty": 1,
-      "sourceLine": 719
+      "sourceLine": 720
     },
     {
       "id": "lexer-006",
@@ -1281,7 +1281,7 @@
         "正规式"
       ],
       "difficulty": 1,
-      "sourceLine": 750
+      "sourceLine": 751
     },
     {
       "id": "lexer-007",
@@ -1316,7 +1316,7 @@
         "正规式"
       ],
       "difficulty": 1,
-      "sourceLine": 769
+      "sourceLine": 770
     },
     {
       "id": "lexer-008",
@@ -1350,7 +1350,7 @@
         "自动机"
       ],
       "difficulty": 1,
-      "sourceLine": 788
+      "sourceLine": 789
     },
     {
       "id": "lexer-009",
@@ -1384,7 +1384,7 @@
         "自动机"
       ],
       "difficulty": 1,
-      "sourceLine": 821
+      "sourceLine": 822
     },
     {
       "id": "lexer-010",
@@ -1418,7 +1418,7 @@
         "ε-闭包"
       ],
       "difficulty": 1,
-      "sourceLine": 840
+      "sourceLine": 841
     },
     {
       "id": "lexer-011",
@@ -1452,7 +1452,7 @@
         "自动机"
       ],
       "difficulty": 1,
-      "sourceLine": 859
+      "sourceLine": 860
     },
     {
       "id": "lexer-012",
@@ -1486,7 +1486,7 @@
         "自动机"
       ],
       "difficulty": 1,
-      "sourceLine": 878
+      "sourceLine": 879
     },
     {
       "id": "lexer-013",
@@ -1519,7 +1519,7 @@
         "词法分析"
       ],
       "difficulty": 1,
-      "sourceLine": 897
+      "sourceLine": 898
     },
     {
       "id": "lexer-014",
@@ -1552,7 +1552,7 @@
         "词法分析"
       ],
       "difficulty": 1,
-      "sourceLine": 916
+      "sourceLine": 917
     },
     {
       "id": "lexer-015",
@@ -1586,7 +1586,7 @@
         "正规式"
       ],
       "difficulty": 1,
-      "sourceLine": 935
+      "sourceLine": 936
     },
     {
       "id": "lexer-016",
@@ -1619,7 +1619,7 @@
         "词法分析"
       ],
       "difficulty": 1,
-      "sourceLine": 954
+      "sourceLine": 955
     },
     {
       "id": "lexer-017",
@@ -1652,7 +1652,7 @@
         "词法分析"
       ],
       "difficulty": 1,
-      "sourceLine": 973
+      "sourceLine": 974
     },
     {
       "id": "lexer-018",
@@ -1685,7 +1685,7 @@
         "词法分析"
       ],
       "difficulty": 1,
-      "sourceLine": 992
+      "sourceLine": 993
     },
     {
       "id": "lexer-019",
@@ -1719,7 +1719,7 @@
         "正规式"
       ],
       "difficulty": 1,
-      "sourceLine": 1011
+      "sourceLine": 1012
     },
     {
       "id": "lexer-020",
@@ -1752,7 +1752,7 @@
         "词法分析"
       ],
       "difficulty": 1,
-      "sourceLine": 1036
+      "sourceLine": 1037
     },
     {
       "id": "lexer-021",
@@ -1786,7 +1786,7 @@
         "自动机"
       ],
       "difficulty": 1,
-      "sourceLine": 1061
+      "sourceLine": 1062
     },
     {
       "id": "lexer-022",
@@ -1819,7 +1819,7 @@
         "词法分析"
       ],
       "difficulty": 1,
-      "sourceLine": 1080
+      "sourceLine": 1081
     },
     {
       "id": "lexer-023",
@@ -1853,7 +1853,7 @@
         "正规式"
       ],
       "difficulty": 1,
-      "sourceLine": 1099
+      "sourceLine": 1100
     },
     {
       "id": "lexer-024",
@@ -1886,7 +1886,7 @@
         "词法分析"
       ],
       "difficulty": 1,
-      "sourceLine": 1128
+      "sourceLine": 1129
     },
     {
       "id": "lexer-025",
@@ -1920,7 +1920,7 @@
         "正规式"
       ],
       "difficulty": 1,
-      "sourceLine": 1147
+      "sourceLine": 1148
     },
     {
       "id": "lexer-026",
@@ -1958,7 +1958,7 @@
         "自动机"
       ],
       "difficulty": 1,
-      "sourceLine": 1172
+      "sourceLine": 1173
     },
     {
       "id": "lexer-027",
@@ -1991,7 +1991,7 @@
         "词法分析"
       ],
       "difficulty": 1,
-      "sourceLine": 1198
+      "sourceLine": 1199
     },
     {
       "id": "lexer-028",
@@ -2024,7 +2024,7 @@
         "词法分析"
       ],
       "difficulty": 1,
-      "sourceLine": 1217
+      "sourceLine": 1218
     },
     {
       "id": "parser-001",
@@ -2057,7 +2057,7 @@
         "语法分析"
       ],
       "difficulty": 2,
-      "sourceLine": 1238
+      "sourceLine": 1239
     },
     {
       "id": "parser-002",
@@ -2090,7 +2090,7 @@
         "语法分析"
       ],
       "difficulty": 2,
-      "sourceLine": 1257
+      "sourceLine": 1258
     },
     {
       "id": "parser-003",
@@ -2123,7 +2123,7 @@
         "语法分析"
       ],
       "difficulty": 2,
-      "sourceLine": 1276
+      "sourceLine": 1277
     },
     {
       "id": "parser-004",
@@ -2157,7 +2157,7 @@
         "左递归"
       ],
       "difficulty": 2,
-      "sourceLine": 1295
+      "sourceLine": 1296
     },
     {
       "id": "parser-005",
@@ -2191,7 +2191,7 @@
         "左因子"
       ],
       "difficulty": 2,
-      "sourceLine": 1327
+      "sourceLine": 1328
     },
     {
       "id": "parser-006",
@@ -2225,7 +2225,7 @@
         "FIRST"
       ],
       "difficulty": 2,
-      "sourceLine": 1359
+      "sourceLine": 1360
     },
     {
       "id": "parser-007",
@@ -2260,7 +2260,7 @@
         "LL(1)"
       ],
       "difficulty": 2,
-      "sourceLine": 1378
+      "sourceLine": 1379
     },
     {
       "id": "parser-008",
@@ -2295,7 +2295,7 @@
         "FIRST"
       ],
       "difficulty": 2,
-      "sourceLine": 1397
+      "sourceLine": 1398
     },
     {
       "id": "parser-009",
@@ -2330,7 +2330,7 @@
         "LL(1)"
       ],
       "difficulty": 2,
-      "sourceLine": 1416
+      "sourceLine": 1417
     },
     {
       "id": "parser-010",
@@ -2365,7 +2365,7 @@
         "LL(1)"
       ],
       "difficulty": 2,
-      "sourceLine": 1435
+      "sourceLine": 1436
     },
     {
       "id": "parser-011",
@@ -2399,7 +2399,7 @@
         "LL(1)"
       ],
       "difficulty": 2,
-      "sourceLine": 1466
+      "sourceLine": 1467
     },
     {
       "id": "parser-012",
@@ -2432,7 +2432,7 @@
         "语法分析"
       ],
       "difficulty": 2,
-      "sourceLine": 1485
+      "sourceLine": 1486
     },
     {
       "id": "parser-013",
@@ -2466,7 +2466,7 @@
         "左因子"
       ],
       "difficulty": 2,
-      "sourceLine": 1504
+      "sourceLine": 1505
     },
     {
       "id": "parser-014",
@@ -2500,7 +2500,7 @@
         "句柄"
       ],
       "difficulty": 2,
-      "sourceLine": 1529
+      "sourceLine": 1530
     },
     {
       "id": "parser-015",
@@ -2533,7 +2533,7 @@
         "语法分析"
       ],
       "difficulty": 2,
-      "sourceLine": 1548
+      "sourceLine": 1549
     },
     {
       "id": "parser-016",
@@ -2566,7 +2566,7 @@
         "语法分析"
       ],
       "difficulty": 2,
-      "sourceLine": 1567
+      "sourceLine": 1568
     },
     {
       "id": "parser-017",
@@ -2599,7 +2599,7 @@
         "语法分析"
       ],
       "difficulty": 2,
-      "sourceLine": 1586
+      "sourceLine": 1587
     },
     {
       "id": "parser-018",
@@ -2633,7 +2633,7 @@
         "LR"
       ],
       "difficulty": 2,
-      "sourceLine": 1605
+      "sourceLine": 1606
     },
     {
       "id": "parser-019",
@@ -2667,7 +2667,7 @@
         "LR"
       ],
       "difficulty": 2,
-      "sourceLine": 1630
+      "sourceLine": 1631
     },
     {
       "id": "parser-020",
@@ -2701,7 +2701,7 @@
         "文法"
       ],
       "difficulty": 2,
-      "sourceLine": 1655
+      "sourceLine": 1656
     },
     {
       "id": "parser-021",
@@ -2734,7 +2734,7 @@
         "语法分析"
       ],
       "difficulty": 2,
-      "sourceLine": 1680
+      "sourceLine": 1681
     },
     {
       "id": "parser-022",
@@ -2767,7 +2767,7 @@
         "语法分析"
       ],
       "difficulty": 2,
-      "sourceLine": 1699
+      "sourceLine": 1700
     },
     {
       "id": "parser-023",
@@ -2801,7 +2801,7 @@
         "文法"
       ],
       "difficulty": 2,
-      "sourceLine": 1724
+      "sourceLine": 1725
     },
     {
       "id": "parser-024",
@@ -2835,7 +2835,7 @@
         "文法"
       ],
       "difficulty": 2,
-      "sourceLine": 1749
+      "sourceLine": 1750
     },
     {
       "id": "parser-025",
@@ -2869,7 +2869,7 @@
         "正规式"
       ],
       "difficulty": 2,
-      "sourceLine": 1812
+      "sourceLine": 1813
     },
     {
       "id": "parser-026",
@@ -2902,7 +2902,7 @@
         "语法分析"
       ],
       "difficulty": 2,
-      "sourceLine": 1837
+      "sourceLine": 1838
     },
     {
       "id": "parser-027",
@@ -2936,7 +2936,7 @@
         "LR"
       ],
       "difficulty": 2,
-      "sourceLine": 1856
+      "sourceLine": 1857
     },
     {
       "id": "parser-028",
@@ -2971,7 +2971,7 @@
         "LL(1)"
       ],
       "difficulty": 2,
-      "sourceLine": 1880
+      "sourceLine": 1881
     },
     {
       "id": "parser-029",
@@ -3004,7 +3004,7 @@
         "语法分析"
       ],
       "difficulty": 2,
-      "sourceLine": 1903
+      "sourceLine": 1904
     },
     {
       "id": "parser-030",
@@ -3037,7 +3037,7 @@
         "语法分析"
       ],
       "difficulty": 2,
-      "sourceLine": 1922
+      "sourceLine": 1923
     },
     {
       "id": "parser-031",
@@ -3072,7 +3072,7 @@
         "LL(1)"
       ],
       "difficulty": 2,
-      "sourceLine": 1941
+      "sourceLine": 1942
     },
     {
       "id": "parser-032",
@@ -3105,7 +3105,7 @@
         "语法分析"
       ],
       "difficulty": 2,
-      "sourceLine": 1960
+      "sourceLine": 1961
     },
     {
       "id": "parser-033",
@@ -3139,7 +3139,7 @@
         "LR"
       ],
       "difficulty": 2,
-      "sourceLine": 1979
+      "sourceLine": 1980
     },
     {
       "id": "judge-001",
@@ -3166,7 +3166,7 @@
         "编译器"
       ],
       "difficulty": 1,
-      "sourceLine": 2007
+      "sourceLine": 2008
     },
     {
       "id": "judge-002",
@@ -3194,7 +3194,7 @@
         "解释器"
       ],
       "difficulty": 1,
-      "sourceLine": 2008
+      "sourceLine": 2009
     },
     {
       "id": "judge-003",
@@ -3222,7 +3222,7 @@
         "前后端"
       ],
       "difficulty": 1,
-      "sourceLine": 2009
+      "sourceLine": 2010
     },
     {
       "id": "judge-004",
@@ -3249,7 +3249,7 @@
         "编译器"
       ],
       "difficulty": 1,
-      "sourceLine": 2010
+      "sourceLine": 2011
     },
     {
       "id": "judge-005",
@@ -3276,7 +3276,7 @@
         "编译器"
       ],
       "difficulty": 1,
-      "sourceLine": 2011
+      "sourceLine": 2012
     },
     {
       "id": "judge-006",
@@ -3303,7 +3303,7 @@
         "编译器"
       ],
       "difficulty": 1,
-      "sourceLine": 2012
+      "sourceLine": 2013
     },
     {
       "id": "judge-007",
@@ -3331,7 +3331,7 @@
         "语法树"
       ],
       "difficulty": 1,
-      "sourceLine": 2013
+      "sourceLine": 2014
     },
     {
       "id": "judge-008",
@@ -3358,7 +3358,7 @@
         "编译器"
       ],
       "difficulty": 1,
-      "sourceLine": 2014
+      "sourceLine": 2015
     },
     {
       "id": "judge-009",
@@ -3386,7 +3386,7 @@
         "文法"
       ],
       "difficulty": 1,
-      "sourceLine": 2015
+      "sourceLine": 2016
     },
     {
       "id": "judge-010",
@@ -3414,7 +3414,7 @@
         "文法"
       ],
       "difficulty": 1,
-      "sourceLine": 2016
+      "sourceLine": 2017
     },
     {
       "id": "judge-011",
@@ -3444,7 +3444,7 @@
         "正规式"
       ],
       "difficulty": 1,
-      "sourceLine": 2017
+      "sourceLine": 2018
     },
     {
       "id": "judge-012",
@@ -3473,7 +3473,7 @@
         "正规式"
       ],
       "difficulty": 1,
-      "sourceLine": 2018
+      "sourceLine": 2019
     },
     {
       "id": "judge-013",
@@ -3502,7 +3502,7 @@
         "左递归"
       ],
       "difficulty": 1,
-      "sourceLine": 2019
+      "sourceLine": 2020
     },
     {
       "id": "judge-014",
@@ -3529,7 +3529,7 @@
         "编译器"
       ],
       "difficulty": 1,
-      "sourceLine": 2020
+      "sourceLine": 2021
     },
     {
       "id": "judge-015",
@@ -3558,7 +3558,7 @@
         "语法树"
       ],
       "difficulty": 1,
-      "sourceLine": 2021
+      "sourceLine": 2022
     },
     {
       "id": "judge-016",
@@ -3587,7 +3587,7 @@
         "语法树"
       ],
       "difficulty": 1,
-      "sourceLine": 2022
+      "sourceLine": 2023
     },
     {
       "id": "judge-017",
@@ -3615,7 +3615,7 @@
         "句柄"
       ],
       "difficulty": 1,
-      "sourceLine": 2023
+      "sourceLine": 2024
     },
     {
       "id": "judge-018",
@@ -3642,7 +3642,7 @@
         "编译器"
       ],
       "difficulty": 1,
-      "sourceLine": 2024
+      "sourceLine": 2025
     },
     {
       "id": "judge-019",
@@ -3669,7 +3669,7 @@
         "编译器"
       ],
       "difficulty": 1,
-      "sourceLine": 2025
+      "sourceLine": 2026
     },
     {
       "id": "judge-020",
@@ -3696,7 +3696,7 @@
         "编译器"
       ],
       "difficulty": 1,
-      "sourceLine": 2026
+      "sourceLine": 2027
     },
     {
       "id": "judge-021",
@@ -3722,7 +3722,7 @@
         "词法分析"
       ],
       "difficulty": 1,
-      "sourceLine": 2027
+      "sourceLine": 2028
     },
     {
       "id": "judge-022",
@@ -3748,7 +3748,7 @@
         "词法分析"
       ],
       "difficulty": 1,
-      "sourceLine": 2028
+      "sourceLine": 2029
     },
     {
       "id": "judge-023",
@@ -3776,7 +3776,7 @@
         "ε-闭包"
       ],
       "difficulty": 1,
-      "sourceLine": 2029
+      "sourceLine": 2030
     },
     {
       "id": "judge-024",
@@ -3804,7 +3804,7 @@
         "正规式"
       ],
       "difficulty": 1,
-      "sourceLine": 2030
+      "sourceLine": 2031
     },
     {
       "id": "judge-025",
@@ -3831,7 +3831,7 @@
         "自动机"
       ],
       "difficulty": 1,
-      "sourceLine": 2031
+      "sourceLine": 2032
     },
     {
       "id": "judge-026",
@@ -3859,7 +3859,7 @@
         "ε-闭包"
       ],
       "difficulty": 1,
-      "sourceLine": 2032
+      "sourceLine": 2033
     },
     {
       "id": "judge-027",
@@ -3886,7 +3886,7 @@
         "自动机"
       ],
       "difficulty": 1,
-      "sourceLine": 2033
+      "sourceLine": 2034
     },
     {
       "id": "judge-028",
@@ -3915,7 +3915,7 @@
         "自动机"
       ],
       "difficulty": 1,
-      "sourceLine": 2034
+      "sourceLine": 2035
     },
     {
       "id": "judge-029",
@@ -3942,7 +3942,7 @@
         "自动机"
       ],
       "difficulty": 1,
-      "sourceLine": 2035
+      "sourceLine": 2036
     },
     {
       "id": "judge-030",
@@ -3969,7 +3969,7 @@
         "自动机"
       ],
       "difficulty": 1,
-      "sourceLine": 2036
+      "sourceLine": 2037
     },
     {
       "id": "judge-031",
@@ -3996,7 +3996,7 @@
         "ε-闭包"
       ],
       "difficulty": 1,
-      "sourceLine": 2037
+      "sourceLine": 2038
     },
     {
       "id": "judge-032",
@@ -4023,7 +4023,7 @@
         "正规式"
       ],
       "difficulty": 1,
-      "sourceLine": 2038
+      "sourceLine": 2039
     },
     {
       "id": "judge-033",
@@ -4049,7 +4049,7 @@
         "词法分析"
       ],
       "difficulty": 1,
-      "sourceLine": 2039
+      "sourceLine": 2040
     },
     {
       "id": "judge-034",
@@ -4075,7 +4075,7 @@
         "词法分析"
       ],
       "difficulty": 1,
-      "sourceLine": 2040
+      "sourceLine": 2041
     },
     {
       "id": "judge-035",
@@ -4101,7 +4101,7 @@
         "词法分析"
       ],
       "difficulty": 1,
-      "sourceLine": 2041
+      "sourceLine": 2042
     },
     {
       "id": "judge-036",
@@ -4127,7 +4127,7 @@
         "词法分析"
       ],
       "difficulty": 1,
-      "sourceLine": 2042
+      "sourceLine": 2043
     },
     {
       "id": "judge-037",
@@ -4154,7 +4154,7 @@
         "正规式"
       ],
       "difficulty": 1,
-      "sourceLine": 2043
+      "sourceLine": 2044
     },
     {
       "id": "judge-038",
@@ -4182,7 +4182,7 @@
         "正规式"
       ],
       "difficulty": 1,
-      "sourceLine": 2044
+      "sourceLine": 2045
     },
     {
       "id": "judge-039",
@@ -4209,7 +4209,7 @@
         "自动机"
       ],
       "difficulty": 1,
-      "sourceLine": 2045
+      "sourceLine": 2046
     },
     {
       "id": "judge-040",
@@ -4236,7 +4236,7 @@
         "文法"
       ],
       "difficulty": 2,
-      "sourceLine": 2046
+      "sourceLine": 2047
     },
     {
       "id": "judge-041",
@@ -4262,7 +4262,7 @@
         "语法分析"
       ],
       "difficulty": 2,
-      "sourceLine": 2047
+      "sourceLine": 2048
     },
     {
       "id": "judge-042",
@@ -4288,7 +4288,7 @@
         "语法分析"
       ],
       "difficulty": 2,
-      "sourceLine": 2048
+      "sourceLine": 2049
     },
     {
       "id": "judge-043",
@@ -4315,7 +4315,7 @@
         "LL(1)"
       ],
       "difficulty": 2,
-      "sourceLine": 2049
+      "sourceLine": 2050
     },
     {
       "id": "judge-044",
@@ -4341,7 +4341,7 @@
         "语法分析"
       ],
       "difficulty": 2,
-      "sourceLine": 2050
+      "sourceLine": 2051
     },
     {
       "id": "judge-045",
@@ -4371,7 +4371,7 @@
         "左因子"
       ],
       "difficulty": 2,
-      "sourceLine": 2051
+      "sourceLine": 2052
     },
     {
       "id": "judge-046",
@@ -4400,7 +4400,7 @@
         "左递归"
       ],
       "difficulty": 2,
-      "sourceLine": 2052
+      "sourceLine": 2053
     },
     {
       "id": "judge-047",
@@ -4429,7 +4429,7 @@
         "左因子"
       ],
       "difficulty": 2,
-      "sourceLine": 2053
+      "sourceLine": 2054
     },
     {
       "id": "judge-048",
@@ -4456,7 +4456,7 @@
         "FIRST"
       ],
       "difficulty": 2,
-      "sourceLine": 2054
+      "sourceLine": 2055
     },
     {
       "id": "judge-049",
@@ -4484,7 +4484,7 @@
         "LL(1)"
       ],
       "difficulty": 2,
-      "sourceLine": 2055
+      "sourceLine": 2056
     },
     {
       "id": "judge-050",
@@ -4512,7 +4512,7 @@
         "LL(1)"
       ],
       "difficulty": 2,
-      "sourceLine": 2056
+      "sourceLine": 2057
     },
     {
       "id": "judge-051",
@@ -4538,7 +4538,7 @@
         "语法分析"
       ],
       "difficulty": 2,
-      "sourceLine": 2057
+      "sourceLine": 2058
     },
     {
       "id": "judge-052",
@@ -4565,7 +4565,7 @@
         "句柄"
       ],
       "difficulty": 2,
-      "sourceLine": 2058
+      "sourceLine": 2059
     },
     {
       "id": "judge-053",
@@ -4592,7 +4592,7 @@
         "句柄"
       ],
       "difficulty": 2,
-      "sourceLine": 2059
+      "sourceLine": 2060
     },
     {
       "id": "judge-054",
@@ -4619,7 +4619,7 @@
         "句柄"
       ],
       "difficulty": 2,
-      "sourceLine": 2060
+      "sourceLine": 2061
     },
     {
       "id": "judge-055",
@@ -4646,7 +4646,7 @@
         "文法"
       ],
       "difficulty": 2,
-      "sourceLine": 2061
+      "sourceLine": 2062
     },
     {
       "id": "judge-056",
@@ -4673,7 +4673,7 @@
         "文法"
       ],
       "difficulty": 2,
-      "sourceLine": 2062
+      "sourceLine": 2063
     },
     {
       "id": "judge-057",
@@ -4701,7 +4701,7 @@
         "LL(1)"
       ],
       "difficulty": 2,
-      "sourceLine": 2063
+      "sourceLine": 2064
     },
     {
       "id": "judge-058",
@@ -4729,7 +4729,7 @@
         "SLR(1)"
       ],
       "difficulty": 2,
-      "sourceLine": 2064
+      "sourceLine": 2065
     },
     {
       "id": "judge-059",
@@ -4755,7 +4755,7 @@
         "语法分析"
       ],
       "difficulty": 2,
-      "sourceLine": 2065
+      "sourceLine": 2066
     },
     {
       "id": "judge-060",
@@ -4781,7 +4781,7 @@
         "语法分析"
       ],
       "difficulty": 2,
-      "sourceLine": 2066
+      "sourceLine": 2067
     },
     {
       "id": "long-001",
@@ -4798,7 +4798,7 @@
         "编译器"
       ],
       "difficulty": 3,
-      "sourceLine": 2070
+      "sourceLine": 2071
     },
     {
       "id": "long-002",
@@ -4816,7 +4816,7 @@
         "前后端"
       ],
       "difficulty": 3,
-      "sourceLine": 2093
+      "sourceLine": 2094
     },
     {
       "id": "long-003",
@@ -4834,7 +4834,7 @@
         "文法分类"
       ],
       "difficulty": 3,
-      "sourceLine": 2123
+      "sourceLine": 2124
     },
     {
       "id": "long-004",
@@ -4850,7 +4850,7 @@
         "综合题"
       ],
       "difficulty": 3,
-      "sourceLine": 2144
+      "sourceLine": 2145
     },
     {
       "id": "long-005",
@@ -4868,7 +4868,7 @@
         "正规式"
       ],
       "difficulty": 3,
-      "sourceLine": 2169
+      "sourceLine": 2170
     },
     {
       "id": "long-006",
@@ -4886,7 +4886,7 @@
         "LL(1)"
       ],
       "difficulty": 3,
-      "sourceLine": 2192
+      "sourceLine": 2193
     },
     {
       "id": "long-007",
@@ -4902,7 +4902,7 @@
         "综合题"
       ],
       "difficulty": 3,
-      "sourceLine": 2231
+      "sourceLine": 2232
     },
     {
       "id": "long-008",
@@ -4919,41 +4919,41 @@
         "句柄"
       ],
       "difficulty": 3,
-      "sourceLine": 2255
+      "sourceLine": 2256
     },
     {
       "id": "long-009",
       "number": 9,
       "section": "综合题",
       "type": "long_answer",
-      "title": "已知文法 G[S]：S → aB | bA",
-      "prompt": "已知文法 G[S]：S → aB | bA",
+      "title": "已知文法 G[S]：S → aB | bA 、A → a | aS | bAA、B → b | bS | aBB 给出句子 aabbab 的最左推导，并画出其语法分析树。",
+      "prompt": "已知文法 G[S]：S → aB | bA 、A → a | aS | bAA、B → b | bS | aBB 给出句子 aabbab 的最左推导，并画出其语法分析树。",
       "options": [],
       "answer": "",
-      "explanation": "本题题干不完整。\n\n目前只给出了：\n\n```text\nS → aB | bA\n```\n\n但没有给出非终结符 A 和 B 的产生式，也没有说明具体要求，例如：\n\n- 求语言？\n- 求 FIRST/FOLLOW？\n- 判断文法类型？\n- 构造推导？\n- 消除左递归？\n- 构造自动机？\n\n因此无法完整求解。\n\n如果只根据已给出的产生式，可以说明：\n\n```text\nS\n├── 以 a 开头，后接 B 能推出的串\n└── 以 b 开头，后接 A 能推出的串\n```\n\n即该文法生成的语言形式依赖于 A 和 B 的定义。需要补充 A、B 的产生式后，才能继续求解。",
+      "explanation": "最左推导要求：每一步都替换当前句型中**最左边的非终结符**。\n\n```text\nS\n⇒ aB\n⇒ aaBB\n⇒ aabB\n⇒ aabbS\n⇒ aabbaB\n⇒ aabbab\n```\n每一步使用的产生式\n\n| 步骤 | 当前推导 | 使用的产生式 |\n|---|---|---|\n| 1 | `S ⇒ aB` | `S → aB` |\n| 2 | `aB ⇒ aaBB` | `B → aBB` |\n| 3 | `aaBB ⇒ aabB` | `B → b` |\n| 4 | `aabB ⇒ aabbS` | `B → bS` |\n| 5 | `aabbS ⇒ aabbaB` | `S → aB` |\n| 6 | `aabbaB ⇒ aabbab` | `B → b` |\n\n因此，句子 `aabbab` 可以由文法 G 推导出来。\n\n语法分析树\n\n```text\n              S\n            /   \\\n           a     B\n                / | \\\n               a  B  B\n                  |  / \\\n                  b b   S\n                       /   \\\n                      a     B\n                            |\n                            b\n```\n叶子节点验证\n\n从语法分析树的叶子节点自左向右读取：\n\n```text\na a b b a b\n```\n\n得到：\n\n```text\naabbab\n```\n与题目给出的句子一致。\n结论\n\n句子 `aabbab` 的最左推导为：\n\n```text\nS ⇒ aB ⇒ aaBB ⇒ aabB ⇒ aabbS ⇒ aabbaB ⇒ aabbab\n```\n\n其语法分析树的叶子节点从左到右为：\n\n```text\naabbab\n```",
       "tags": [
         "综合题",
         "文法"
       ],
       "difficulty": 3,
-      "sourceLine": 2283
+      "sourceLine": 2284
     },
     {
       "id": "long-010",
       "number": 10,
       "section": "综合题",
       "type": "long_answer",
-      "title": "已知文法 G[E]，对句子 i+i*i 分别给出最左推导和最右推导，并画出语法分析树。",
-      "prompt": "已知文法 G[E]，对句子 i+i*i 分别给出最左推导和最右推导，并画出语法分析树。",
+      "title": "已知文法 G[E]，E → E + T | T、T → T * F | F、F → ( E ) | i。对句子 i+i*i 分别给出最左推导和最右推导，并画出语法分析树。",
+      "prompt": "已知文法 G[E]，E → E + T | T、T → T * F | F、F → ( E ) | i。对句子 i+i*i 分别给出最左推导和最右推导，并画出语法分析树。",
       "options": [],
       "answer": "",
-      "explanation": "文法为：\n\n```text\nE → E + T | T\nT → T * F | F\nF → ( E ) | i\n```\n\n### （1）最左推导\n\n```text\nE\n⇒ E + T\n⇒ T + T\n⇒ F + T\n⇒ i + T\n⇒ i + T * F\n⇒ i + F * F\n⇒ i + i * F\n⇒ i + i * i\n```\n\n### （2）最右推导\n\n```text\nE\n⇒ E + T\n⇒ E + T * F\n⇒ E + T * i\n⇒ E + F * i\n⇒ E + i * i\n⇒ T + i * i\n⇒ F + i * i\n⇒ i + i * i\n```\n\n### （3）语法分析树\n\n```text\n        E\n      / | \\\n     E  +  T\n     |    / | \\\n     T   T  *  F\n     |   |     |\n     F   F     i\n     |   |\n     i   i\n```\n\n该语法树体现了运算优先级：`*` 的结合层次低于 T，优先于 `+` 参与运算，因此句子 `i+i*i` 被解释为：\n\n```text\ni + (i * i)\n```",
+      "explanation": "（1）最左推导\n\n```text\nE\n⇒ E + T\n⇒ T + T\n⇒ F + T\n⇒ i + T\n⇒ i + T * F\n⇒ i + F * F\n⇒ i + i * F\n⇒ i + i * i\n```\n\n（2）最右推导\n\n```text\nE\n⇒ E + T\n⇒ E + T * F\n⇒ E + T * i\n⇒ E + F * i\n⇒ E + i * i\n⇒ T + i * i\n⇒ F + i * i\n⇒ i + i * i\n```\n\n（3）语法分析树\n\n```text\n        E\n      / | \\\n     E  +  T\n     |    / | \\\n     T   T  *  F\n     |   |     |\n     F   F     i\n     |   |\n     i   i\n```\n\n该语法树体现了运算优先级：`*` 的结合层次低于 T，优先于 `+` 参与运算，因此句子 `i+i*i` 被解释为：\n\n```text\ni + (i * i)\n```",
       "tags": [
         "综合题",
         "文法"
       ],
       "difficulty": 3,
-      "sourceLine": 2316
+      "sourceLine": 2353
     },
     {
       "id": "long-011",
@@ -4970,7 +4970,7 @@
         "文法"
       ],
       "difficulty": 3,
-      "sourceLine": 2376
+      "sourceLine": 2405
     },
     {
       "id": "long-012",
@@ -4987,18 +4987,18 @@
         "文法"
       ],
       "difficulty": 3,
-      "sourceLine": 2414
+      "sourceLine": 2443
     },
     {
       "id": "long-013",
       "number": 13,
       "section": "综合题",
       "type": "long_answer",
-      "title": "已知文法 G[S]，完成消除左递归和提取公共左因子。",
-      "prompt": "已知文法 G[S]，完成消除左递归和提取公共左因子。",
+      "title": "已知文法 G[S]，S → Sa | Sb | ca | cb、A → Aa | Ab | d完成消除左递归和提取公共左因子。",
+      "prompt": "已知文法 G[S]，S → Sa | Sb | ca | cb、A → Aa | Ab | d完成消除左递归和提取公共左因子。",
       "options": [],
       "answer": "",
-      "explanation": "原文法：\n\n```text\nS → Sa | Sb | ca | cb\nA → Aa | Ab | d\n```\n\n### （1）消除 S 的直接左递归\n\n原产生式：\n\n```text\nS → Sa | Sb | ca | cb\n```\n\n左递归部分：\n\n```text\nSa | Sb\n```\n\n非左递归部分：\n\n```text\nca | cb\n```\n\n消除左递归：\n\n```text\nS  → caS' | cbS'\nS' → aS' | bS' | ε\n```\n\n### （2）对 S 提取公共左因子\n\n`caS'` 和 `cbS'` 有公共左因子 `c`，所以可改写为：\n\n```text\nS  → cC\nC  → aS' | bS'\nS' → aS' | bS' | ε\n```\n\n### （3）消除 A 的直接左递归\n\n原产生式：\n\n```text\nA → Aa | Ab | d\n```\n\n左递归部分：\n\n```text\nAa | Ab\n```\n\n非左递归部分：\n\n```text\nd\n```\n\n消除左递归：\n\n```text\nA  → dA'\nA' → aA' | bA' | ε\n```\n\n### （4）最终结果\n\n```text\nS  → cC\nC  → aS' | bS'\nS' → aS' | bS' | ε\n\nA  → dA'\nA' → aA' | bA' | ε\n```",
+      "explanation": "原文法：\n\n```text\nS → Sa | Sb | ca | cb\nA → Aa | Ab | d\n```\n\n消除 S 的直接左递归\n\n原产生式：\n\n```text\nS → Sa | Sb | ca | cb\n```\n\n左递归部分：\n\n```text\nSa | Sb\n```\n\n非左递归部分：\n\n```text\nca | cb\n```\n\n消除左递归：\n\n```text\nS  → caS' | cbS'\nS' → aS' | bS' | ε\n```\n\n对 S 提取公共左因子\n\n`caS'` 和 `cbS'` 有公共左因子 `c`，所以可改写为：\n\n```text\nS  → cC\nC  → aS' | bS'\nS' → aS' | bS' | ε\n```\n\n消除 A 的直接左递归\n\n原产生式：\n\n```text\nA → Aa | Ab | d\n```\n\n左递归部分：\n\n```text\nAa | Ab\n```\n\n非左递归部分：\n\n```text\nd\n```\n\n消除左递归：\n\n```text\nA  → dA'\nA' → aA' | bA' | ε\n```\n\n最终结果\n\n```text\nS  → cC\nC  → aS' | bS'\nS' → aS' | bS' | ε\n\nA  → dA'\nA' → aA' | bA' | ε\n```",
       "tags": [
         "综合题",
         "文法",
@@ -5006,18 +5006,18 @@
         "左因子"
       ],
       "difficulty": 3,
-      "sourceLine": 2452
+      "sourceLine": 2481
     },
     {
       "id": "long-014",
       "number": 14,
       "section": "综合题",
       "type": "long_answer",
-      "title": "已知文法 G[E]，完成消除左递归和提取公共左因子。",
-      "prompt": "已知文法 G[E]，完成消除左递归和提取公共左因子。",
+      "title": "已知文法 G[E]，E → E + T | T、T → T * F | F、F → ( E ) | i完成消除左递归和提取公共左因子。",
+      "prompt": "已知文法 G[E]，E → E + T | T、T → T * F | F、F → ( E ) | i完成消除左递归和提取公共左因子。",
       "options": [],
       "answer": "",
-      "explanation": "原文法：\n\n```text\nE → E + T | T\nT → T * F | F\nF → ( E ) | i\n```\n\n### （1）消除 E 的直接左递归\n\n```text\nE  → T E'\nE' → + T E' | ε\n```\n\n### （2）消除 T 的直接左递归\n\n```text\nT  → F T'\nT' → * F T' | ε\n```\n\n### （3）F 不含左递归\n\n```text\nF → ( E ) | i\n```\n\n### （4）提取公共左因子\n\n该文法在消除左递归后不存在需要提取的公共左因子。\n\n### （5）最终结果\n\n```text\nE  → T E'\nE' → + T E' | ε\nT  → F T'\nT' → * F T' | ε\nF  → ( E ) | i\n```",
+      "explanation": "消除 E 的直接左递归\n\n```text\nE  → T E'\nE' → + T E' | ε\n```\n消除 T 的直接左递归\n\n```text\nT  → F T'\nT' → * F T' | ε\n```\nF 不含左递归\n\n```text\nF → ( E ) | i\n```\n提取公共左因子\n\n该文法在消除左递归后不存在需要提取的公共左因子。\n\n最终结果\n\n```text\nE  → T E'\nE' → + T E' | ε\nT  → F T'\nT' → * F T' | ε\nF  → ( E ) | i\n```",
       "tags": [
         "综合题",
         "文法",
@@ -5025,77 +5025,79 @@
         "左因子"
       ],
       "difficulty": 3,
-      "sourceLine": 2538
+      "sourceLine": 2567
     },
     {
       "id": "long-015",
       "number": 15,
       "section": "综合题",
       "type": "long_answer",
-      "title": "已知正规文法 G[S]，求该文法定义的正规式。",
-      "prompt": "已知正规文法 G[S]，求该文法定义的正规式。",
+      "title": "已知正规文法 G[S]，S → aA | bB、A → aS | b、B → bS | a、求该文法定义的正规式。",
+      "prompt": "已知正规文法 G[S]，S → aA | bB、A → aS | b、B → bS | a、求该文法定义的正规式。",
       "options": [],
       "answer": "",
-      "explanation": "文法：\n\n```text\nS → aA | bB\nA → aS | b\nB → bS | a\n```\n\n设 S、A、B 分别表示从对应非终结符出发所生成的语言，则有：\n\n```text\nS = aA | bB\nA = aS | b\nB = bS | a\n```\n\n代入 A 和 B：\n\n```text\nS = a(aS | b) | b(bS | a)\n```\n\n展开：\n\n```text\nS = aaS | ab | bbS | ba\n```\n\n整理：\n\n```text\nS = (aa | bb)S | (ab | ba)\n```\n\n根据 Arden 定理：\n\n```text\nS = (aa | bb)*(ab | ba)\n```\n\n所以该文法定义的正规式为：\n\n```text\n(aa | bb)*(ab | ba)\n```",
+      "explanation": "设 S、A、B 分别表示从对应非终结符出发所生成的语言，则有：\n\n```text\nS = aA | bB\nA = aS | b\nB = bS | a\n```\n\n代入 A 和 B：\n\n```text\nS = a(aS | b) | b(bS | a)\n```\n\n展开：\n\n```text\nS = aaS | ab | bbS | ba\n```\n\n整理：\n\n```text\nS = (aa | bb)S | (ab | ba)\n```\n\n根据 Arden 定理：\n\n```text\nS = (aa | bb)*(ab | ba)\n```\n\n所以该文法定义的正规式为：\n\n```text\n(aa | bb)*(ab | ba)\n```",
       "tags": [
         "综合题",
         "文法",
         "正规式"
       ],
       "difficulty": 3,
-      "sourceLine": 2584
+      "sourceLine": 2603
     },
     {
       "id": "long-016",
       "number": 16,
       "section": "综合题",
       "type": "long_answer",
-      "title": "已知正规文法 G[A]，求该文法定义的正规式。",
-      "prompt": "已知正规文法 G[A]，求该文法定义的正规式。",
+      "title": "已知正规文法 G[A]，A → aB | b、B → aA | bB | b、求该文法定义的正规式。",
+      "prompt": "已知正规文法 G[A]，A → aB | b、B → aA | bB | b、求该文法定义的正规式。",
       "options": [],
       "answer": "",
-      "explanation": "文法：\n\n```text\nA → aB | b\nB → aA | bB | b\n```\n\n设 A、B 表示对应非终结符生成的语言：\n\n```text\nA = aB | b\nB = aA | bB | b\n```\n\n先解 B：\n\n```text\nB = bB | aA | b\n```\n\n根据 Arden 定理：\n\n```text\nB = b*(aA | b)\n```\n\n代入 A：\n\n```text\nA = aB | b\nA = a b*(aA | b) | b\nA = a b* a A | a b* b | b\n```\n\n整理为：\n\n```text\nA = (a b* a)A | (a b* b | b)\n```\n\n根据 Arden 定理：\n\n```text\nA = (a b* a)*(a b* b | b)\n```\n\n所以该文法定义的正规式为：\n\n```text\n(a b* a)*(a b* b | b)\n```",
+      "explanation": "设 A、B 表示对应非终结符生成的语言：\n\n```text\nA = aB | b\nB = aA | bB | b\n```\n\n先解 B：\n\n```text\nB = bB | aA | b\n```\n\n根据 Arden 定理：\n\n```text\nB = b*(aA | b)\n```\n\n代入 A：\n\n```text\nA = aB | b\nA = a b*(aA | b) | b\nA = a b* a A | a b* b | b\n```\n\n整理为：\n\n```text\nA = (a b* a)A | (a b* b | b)\n```\n\n根据 Arden 定理：\n\n```text\nA = (a b* a)*(a b* b | b)\n```\n\n所以该文法定义的正规式为：\n\n```text\n(a b* a)*(a b* b | b)\n```",
       "tags": [
         "综合题",
         "文法",
         "正规式"
       ],
       "difficulty": 3,
-      "sourceLine": 2634
+      "sourceLine": 2646
     },
     {
       "id": "long-017",
       "number": 17,
       "section": "综合题",
       "type": "long_answer",
-      "title": "设 Σ={0,1}，正规集 S 由以 00 结尾的所有字符串组成。",
-      "prompt": "设 Σ={0,1}，正规集 S 由以 00 结尾的所有字符串组成。",
+      "title": "设 Σ={0,1}，正规集 S 由以 00 结尾的所有字符串组成。(1)给出该字符串集合对应的正规式;(2)构造相应的 NFA;(3)将此 NFA 转换为 DFA。",
+      "prompt": "设 Σ={0,1}，正规集 S 由以 00 结尾的所有字符串组成。(1)给出该字符串集合对应的正规式;(2)构造相应的 NFA;(3)将此 NFA 转换为 DFA。",
       "options": [],
       "answer": "",
-      "explanation": "### （1）正规式\n\n以 `00` 结尾，前面可以是任意 0、1 串，因此正规式为：\n\n```text\n(0 | 1)*00\n```\n\n### （2）构造 NFA\n\n构造 NFA：\n\n```text\n状态集：{q0, q1, q2}\n初态：q0\n终态：{q2}\n```\n\n转移关系：\n\n| 当前状态 | 输入 0 | 输入 1 |\n| -------- | ------ | ------ |\n| q0       | q0, q1 | q0     |\n| q1       | q2     | ∅      |\n| q2       | ∅      | ∅      |\n\n说明：\n\n- q0 可以循环读取任意前缀。\n- 当猜测某个 `0` 是倒数第二个字符时，从 q0 转到 q1。\n- 再读入一个 `0` 后到 q2。\n- 若输入结束时处于 q2，则说明字符串以 `00` 结尾。\n\n### （3）将 NFA 转换为 DFA\n\n对子集进行构造：\n\n| DFA 状态 | NFA 状态集合 | 输入 0 | 输入 1 | 是否终态 |\n| -------- | ------------ | ------ | ------ | -------- |\n| A        | {q0}         | B      | A      | 否       |\n| B        | {q0,q1}      | C      | A      | 否       |\n| C        | {q0,q1,q2}   | C      | A      | 是       |\n\n所以 DFA 可表示为：\n\n```text\nA --0--> B\nA --1--> A\n\nB --0--> C\nB --1--> A\n\nC --0--> C\nC --1--> A\n```\n\n其中：\n\n```text\n初态：A\n终态：C\n```",
+      "explanation": "正规式\n\n以 `00` 结尾，前面可以是任意 0、1 串，因此正规式为：\n\n```text\n(0 | 1)*00\n```\n\n构造 NFA：\n\n```text\n状态集：{q0, q1, q2}\n初态：q0\n终态：{q2}\n```\n\n转移关系：\n\n| 当前状态 | 输入 0 | 输入 1 |\n| -------- | ------ | ------ |\n| q0       | q0, q1 | q0     |\n| q1       | q2     | ∅      |\n| q2       | ∅      | ∅      |\n\n说明：\n\n- q0 可以循环读取任意前缀。\n- 当猜测某个 `0` 是倒数第二个字符时，从 q0 转到 q1。\n- 再读入一个 `0` 后到 q2。\n- 若输入结束时处于 q2，则说明字符串以 `00` 结尾。\n\n将 NFA 转换为 DFA\n\n对子集进行构造：\n\n| DFA 状态 | NFA 状态集合 | 输入 0 | 输入 1 | 是否终态 |\n| -------- | ------------ | ------ | ------ | -------- |\n| A        | {q0}         | B      | A      | 否       |\n| B        | {q0,q1}      | C      | A      | 否       |\n| C        | {q0,q1,q2}   | C      | A      | 是       |\n\n所以 DFA 可表示为：\n\n```text\nA --0--> B\nA --1--> A\n\nB --0--> C\nB --1--> A\n\nC --0--> C\nC --1--> A\n```\n\n其中：\n\n```text\n初态：A\n终态：C\n```",
       "tags": [
         "综合题",
-        "正规式"
+        "正规式",
+        "自动机"
       ],
       "difficulty": 3,
-      "sourceLine": 2690
+      "sourceLine": 2695
     },
     {
       "id": "long-018",
       "number": 18,
       "section": "综合题",
       "type": "long_answer",
-      "title": "设 Σ={a,b}，正规集 S 由包含子串 ab 的所有字符串组成。",
-      "prompt": "设 Σ={a,b}，正规集 S 由包含子串 ab 的所有字符串组成。",
+      "title": "设 Σ={a,b}，正规集 S 由包含子串 ab 的所有字符串组成。(1)给出该字符串集合对应的正规式;(2)构造相应的 NFA;(3)将此 NFA 转换为 DFA。",
+      "prompt": "设 Σ={a,b}，正规集 S 由包含子串 ab 的所有字符串组成。(1)给出该字符串集合对应的正规式;(2)构造相应的 NFA;(3)将此 NFA 转换为 DFA。",
       "options": [],
       "answer": "",
-      "explanation": "### （1）正规式\n\n包含子串 `ab` 的字符串，可以表示为：\n\n```text\n(a | b)*ab(a | b)*\n```\n\n### （2）构造 NFA\n\n构造 NFA：\n\n```text\n状态集：{q0, q1, q2}\n初态：q0\n终态：{q2}\n```\n\n转移关系：\n\n| 当前状态 | 输入 a | 输入 b |\n| -------- | ------ | ------ |\n| q0       | q0, q1 | q0     |\n| q1       | ∅      | q2     |\n| q2       | q2     | q2     |\n\n说明：\n\n- q0 可以读取任意前缀。\n- 当读到可能作为子串 `ab` 开头的 `a` 时，转到 q1。\n- q1 再读到 `b`，转到 q2。\n- q2 是终态，表示已经出现过子串 `ab`，之后任意输入都保持接受状态。\n\n### （3）将 NFA 转换为 DFA\n\n按子集构造法得到：\n\n| DFA 状态 | NFA 状态集合 | 输入 a | 输入 b | 是否终态 |\n| -------- | ------------ | ------ | ------ | -------- |\n| A        | {q0}         | B      | A      | 否       |\n| B        | {q0,q1}      | B      | C      | 否       |\n| C        | {q0,q2}      | D      | C      | 是       |\n| D        | {q0,q1,q2}   | D      | C      | 是       |\n\n其中：\n\n```text\n初态：A\n终态：C, D\n```\n\n由于 C 和 D 都是接受状态，且行为等价，也可以合并为一个终态 F，得到最小 DFA：\n\n| 状态 | 输入 a | 输入 b | 说明                           |\n| ---- | ------ | ------ | ------------------------------ |\n| A    | B      | A      | 尚未识别到 ab                  |\n| B    | B      | F      | 已看到一个可能作为 ab 开头的 a |\n| F    | F      | F      | 已经识别到 ab                  |\n\n其中：\n\n```text\n初态：A\n终态：F\n```",
+      "explanation": "正规式\n\n包含子串 `ab` 的字符串，可以表示为：\n\n```text\n(a | b)*ab(a | b)*\n```\n\n构造 NFA：\n\n```text\n状态集：{q0, q1, q2}\n初态：q0\n终态：{q2}\n```\n\n转移关系：\n\n| 当前状态 | 输入 a | 输入 b |\n| -------- | ------ | ------ |\n| q0       | q0, q1 | q0     |\n| q1       | ∅      | q2     |\n| q2       | q2     | q2     |\n\n说明：\n\n- q0 可以读取任意前缀。\n- 当读到可能作为子串 `ab` 开头的 `a` 时，转到 q1。\n- q1 再读到 `b`，转到 q2。\n- q2 是终态，表示已经出现过子串 `ab`，之后任意输入都保持接受状态。\n\n将 NFA 转换为 DFA\n\n按子集构造法得到：\n\n| DFA 状态 | NFA 状态集合 | 输入 a | 输入 b | 是否终态 |\n| -------- | ------------ | ------ | ------ | -------- |\n| A        | {q0}         | B      | A      | 否       |\n| B        | {q0,q1}      | B      | C      | 否       |\n| C        | {q0,q2}      | D      | C      | 是       |\n| D        | {q0,q1,q2}   | D      | C      | 是       |\n\n其中：\n\n```text\n初态：A\n终态：C, D\n```\n\n由于 C 和 D 都是接受状态，且行为等价，也可以合并为一个终态 F，得到最小 DFA：\n\n| 状态 | 输入 a | 输入 b | 说明                           |\n| ---- | ------ | ------ | ------------------------------ |\n| A    | B      | A      | 尚未识别到 ab                  |\n| B    | B      | F      | 已看到一个可能作为 ab 开头的 a |\n| F    | F      | F      | 已经识别到 ab                  |\n\n其中：\n\n```text\n初态：A\n终态：F\n```",
       "tags": [
         "综合题",
-        "正规式"
+        "正规式",
+        "自动机"
       ],
       "difficulty": 3,
-      "sourceLine": 2757
+      "sourceLine": 2760
     },
     {
       "id": "long-019",
@@ -5115,7 +5117,7 @@
         "SLR(1)"
       ],
       "difficulty": 3,
-      "sourceLine": 2827
+      "sourceLine": 2828
     },
     {
       "id": "long-020",
@@ -5135,7 +5137,7 @@
         "SLR(1)"
       ],
       "difficulty": 3,
-      "sourceLine": 2970
+      "sourceLine": 2971
     }
   ]
 }
