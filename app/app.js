@@ -1009,7 +1009,6 @@ function setActiveModeNav() {
 
 function renderReviewFeedback(question) {
   const feedback = $("feedback");
-  const summary = sessionSummaryText();
   const points = questionPoints(question);
 
   if (!isAutoGraded(question)) {
@@ -1217,7 +1216,18 @@ function renderSectionCuteOptions() {
   syncSectionCuteSelect();
 }
 
-function selectSection(section, { rebuild = true } = {}) {
+async function confirmDiscardActiveAttempt(actionText = "切换题组") {
+  if (!hasAttemptActivity() || state.sessionSubmitted) return true;
+
+  return showCuteDialog({
+    title: "要离开当前题组吗？",
+    message: `你这一组还没有交卷，${actionText} 会清空当前未交卷的选择、综合题草稿和标记。确定继续吗？`,
+    confirmText: "继续切换",
+    cancelText: "留下继续做",
+  });
+}
+
+function applySection(section, { rebuild = true } = {}) {
   const nextSection = sections().includes(section) ? section : ALL_SECTIONS;
   const select = $("sectionSelect");
   if (select) select.value = nextSection;
@@ -1225,6 +1235,24 @@ function selectSection(section, { rebuild = true } = {}) {
   closeSectionCuteMenu();
   syncSectionCuteSelect();
   if (rebuild) buildQueue();
+}
+
+async function selectSection(section, { rebuild = true } = {}) {
+  const nextSection = sections().includes(section) ? section : ALL_SECTIONS;
+  if (nextSection === state.section) {
+    closeSectionCuteMenu();
+    syncSectionCuteSelect();
+    return;
+  }
+
+  const confirmed = await confirmDiscardActiveAttempt("切换章节");
+  if (!confirmed) {
+    closeSectionCuteMenu();
+    syncSectionCuteSelect();
+    return;
+  }
+
+  applySection(nextSection, { rebuild });
 }
 
 function isSectionCuteMenuOpen() {
@@ -1357,7 +1385,7 @@ function showCuteDialog({
 }
 
 function bindEvents() {
-  document.addEventListener("click", (event) => {
+  document.addEventListener("click", async (event) => {
     const option = event.target.closest(".option");
     if (option) {
       chooseOption(option.dataset.option);
@@ -1372,7 +1400,19 @@ function bindEvents() {
 
     const modeButton = event.target.closest("[data-action='mode']");
     if (modeButton) {
-      state.mode = modeButton.dataset.mode;
+      const nextMode = modeButton.dataset.mode;
+      if (nextMode === state.mode) {
+        setActiveNav(modeButton);
+        $("statsPanel").classList.add("hidden");
+        $("quizPanel").classList.remove("hidden");
+        renderAll();
+        return;
+      }
+
+      const confirmed = await confirmDiscardActiveAttempt("切换练习模式");
+      if (!confirmed) return;
+
+      state.mode = nextMode;
       setActiveNav(modeButton);
       $("statsPanel").classList.add("hidden");
       $("quizPanel").classList.remove("hidden");
@@ -1563,6 +1603,8 @@ function init() {
 }
 
 init();
+
+
 
 
 
