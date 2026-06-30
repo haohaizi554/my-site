@@ -1579,3 +1579,40 @@ button:disabled {
     border-radius: 22px;
   }
 }
+.archive-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.archive-btn {
+  min-height: 34px;
+  border: 1px solid rgba(255, 185, 204, 0.58);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 20% 15%, rgba(255, 255, 255, 0.9), transparent 34%),
+    linear-gradient(135deg, rgba(255, 240, 172, 0.78), rgba(255, 201, 218, 0.58), rgba(178, 232, 226, 0.7));
+  color: #544652;
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.archive-btn:hover,
+.archive-btn:focus-visible {
+  border-color: rgba(255, 143, 179, 0.82);
+  color: #2e2634;
+  outline: none;
+}
+
+.storage-hint {
+  margin: 7px 4px 0;
+  color: rgba(90, 78, 94, 0.74);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.45;
+}
+

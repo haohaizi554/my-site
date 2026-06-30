@@ -1,10 +1,22 @@
 ﻿const bank = window.QUESTION_BANK || { questions: [] };
 const questions = bank.questions || [];
-const storageKey = "compiler-principles-quiz-progress-v1";
-const attemptStorageKey = "compiler-principles-quiz-active-attempt-v1";
+const STORAGE_APP_ID = "compiler-principles-quiz";
+const STORAGE_SCHEMA_VERSION = 2;
+const STORAGE_SCOPE = getStorageScope();
+const legacyProgressStorageKeys = [
+  `${STORAGE_APP_ID}:personal-progress-v${STORAGE_SCHEMA_VERSION}`,
+  "compiler-principles-quiz-progress-v1",
+];
+const legacyAttemptStorageKeys = [
+  `${STORAGE_APP_ID}:active-attempt-v${STORAGE_SCHEMA_VERSION}`,
+  "compiler-principles-quiz-active-attempt-v1",
+];
+const storageKey = `${STORAGE_APP_ID}:${STORAGE_SCOPE}:personal-progress-v${STORAGE_SCHEMA_VERSION}`;
+const attemptStorageKey = `${STORAGE_APP_ID}:${STORAGE_SCOPE}:active-attempt-v${STORAGE_SCHEMA_VERSION}`;
 const ALL_SECTIONS = "全部";
 const RANDOM_SIZE = 20;
-const EXAM_SIZE = 50;`r`nconst EXAM_TYPE_ORDER = ["single_choice", "multi_choice", "true_false", "long_answer"];
+const EXAM_SIZE = 50;
+const EXAM_TYPE_ORDER = ["single_choice", "multi_choice", "true_false", "long_answer"];
 const AUTO_GRADED_TYPES = new Set(["single_choice", "multi_choice", "true_false"]);
 const EXAM_TYPE_WEIGHTS = {
   single_choice: 0.44,
@@ -37,21 +49,113 @@ const state = {
 
 const $ = (id) => document.getElementById(id);
 
-function loadProgress() {
-  try {
-    const parsed = JSON.parse(localStorage.getItem(storageKey)) || {};
-    return typeof parsed === "object" && !Array.isArray(parsed) ? parsed : {};
-  } catch {
-    return {};
+function getStorageScope() {
+  const clean = (value) => String(value || "")
+    .replace(/[^a-z0-9_-]+/gi, "-")
+    .replace(/^-+|-+$/g, "")
+    .toLowerCase();
+  const host = clean(window.location.hostname);
+  const pathParts = window.location.pathname.split("/").filter(Boolean);
+
+  if (window.location.hostname.endsWith("github.io") && pathParts[0]) {
+    return clean(pathParts[0]);
   }
+
+  return host || "local-file";
+}
+
+function loadProgress() {
+  const currentPayload = readStorageJson(storageKey);
+  if (currentPayload) return normalizeProgressPayload(currentPayload);
+
+  for (const legacyKey of legacyProgressStorageKeys) {
+    const legacyPayload = readStorageJson(legacyKey);
+    if (!legacyPayload) continue;
+
+    const migrated = normalizeProgressPayload(legacyPayload);
+    if (Object.keys(migrated).length) {
+      writeStorageJson(storageKey, createProgressPayload(migrated));
+      return migrated;
+    }
+  }
+
+  return {};
 }
 
 function saveProgress() {
+  writeStorageJson(storageKey, createProgressPayload(state.progress), "浏览器无法保存学习记录，请检查本地存储权限。");
+}
+
+function readStorageJson(key) {
   try {
-    localStorage.setItem(storageKey, JSON.stringify(state.progress));
+    const raw = localStorage.getItem(key);
+    return raw ? JSON.parse(raw) : null;
   } catch {
-    showNotice("浏览器无法保存学习记录，请检查本地存储权限。");
+    return null;
   }
+}
+
+function writeStorageJson(key, payload, failureMessage = "") {
+  try {
+    localStorage.setItem(key, JSON.stringify(payload));
+    return true;
+  } catch {
+    if (failureMessage) showNotice(failureMessage);
+    return false;
+  }
+}
+
+function removeStorageKey(key) {
+  try {
+    localStorage.removeItem(key);
+  } catch {
+    // ignore localStorage cleanup failures
+  }
+}
+
+function normalizeProgressPayload(payload) {
+  if (!payload || typeof payload !== "object" || Array.isArray(payload)) return {};
+
+  const records = payload.records || payload.progress || payload;
+  if (!records || typeof records !== "object" || Array.isArray(records)) return {};
+
+  return Object.fromEntries(
+    Object.entries(records)
+      .filter(([, value]) => value && typeof value === "object" && !Array.isArray(value))
+      .map(([id, value]) => [id, { ...value }])
+  );
+}
+
+function createProgressPayload(progress) {
+  return {
+    appId: STORAGE_APP_ID,
+    schemaVersion: STORAGE_SCHEMA_VERSION,
+    savedAt: new Date().toISOString(),
+    origin: window.location.origin || "file://",
+    bankSize: questions.length,
+    records: progress,
+  };
+}
+
+function readActiveAttemptPayload() {
+  const currentPayload = readStorageJson(attemptStorageKey);
+  if (currentPayload) return currentPayload;
+
+  for (const legacyKey of legacyAttemptStorageKeys) {
+    const legacyPayload = readStorageJson(legacyKey);
+    if (!legacyPayload || !Array.isArray(legacyPayload.queueIds)) continue;
+
+    const migrated = {
+      ...legacyPayload,
+      appId: STORAGE_APP_ID,
+      schemaVersion: STORAGE_SCHEMA_VERSION,
+      migratedAt: new Date().toISOString(),
+    };
+    writeStorageJson(attemptStorageKey, migrated);
+    return migrated;
+  }
+
+  return null;
 }
 
 function hasAttemptActivity() {
@@ -77,7 +181,8 @@ function saveActiveAttempt() {
   }
 
   const payload = {
-    version: 1,
+    appId: STORAGE_APP_ID,
+    schemaVersion: STORAGE_SCHEMA_VERSION,
     mode: state.mode,
     section: state.section,
     index: state.index,
@@ -88,24 +193,17 @@ function saveActiveAttempt() {
     savedAt: new Date().toISOString(),
   };
 
-  try {
-    localStorage.setItem(attemptStorageKey, JSON.stringify(payload));
-  } catch {
-    showNotice("浏览器无法保存当前作答草稿，请检查本地存储权限。");
-  }
+  writeStorageJson(attemptStorageKey, payload, "浏览器无法保存当前作答草稿，请检查本地存储权限。");
 }
 
 function clearActiveAttempt() {
-  try {
-    localStorage.removeItem(attemptStorageKey);
-  } catch {
-    // ignore localStorage cleanup failures
-  }
+  removeStorageKey(attemptStorageKey);
+  legacyAttemptStorageKeys.forEach(removeStorageKey);
 }
 
 function restoreActiveAttempt() {
   try {
-    const payload = JSON.parse(localStorage.getItem(attemptStorageKey) || "null");
+    const payload = readActiveAttemptPayload();
     if (!payload || !Array.isArray(payload.queueIds) || !payload.queueIds.length) return false;
 
     const map = questionById();
@@ -130,6 +228,93 @@ function restoreActiveAttempt() {
   }
 }
 
+function exportLearningArchive() {
+  saveProgress();
+  saveActiveAttempt();
+
+  const archive = {
+    appId: STORAGE_APP_ID,
+    schemaVersion: STORAGE_SCHEMA_VERSION,
+    exportedAt: new Date().toISOString(),
+    origin: window.location.origin || "file://",
+    bankSize: questions.length,
+    progress: state.progress,
+    activeAttempt: readActiveAttemptPayload(),
+  };
+  const date = new Date().toISOString().slice(0, 10);
+  const filename = `编译原理学习档案-${date}.json`;
+  const blob = new Blob([JSON.stringify(archive, null, 2)], { type: "application/json;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(url);
+  showNotice("学习档案已导出，换设备时导入它就能接上进度。");
+}
+
+async function importLearningArchive(file) {
+  if (!file) return;
+
+  let archive;
+  try {
+    archive = JSON.parse(await file.text());
+  } catch {
+    showNotice("这个文件不是可识别的学习档案 JSON。");
+    return;
+  }
+
+  const importedProgress = normalizeProgressPayload(archive);
+  const importedAttempt = archive?.activeAttempt && Array.isArray(archive.activeAttempt.queueIds)
+    ? {
+      ...archive.activeAttempt,
+      appId: STORAGE_APP_ID,
+      schemaVersion: STORAGE_SCHEMA_VERSION,
+      importedAt: new Date().toISOString(),
+    }
+    : null;
+  const recordCount = Object.keys(importedProgress).length;
+
+  if (!recordCount && !importedAttempt) {
+    showNotice("这个档案里没有可恢复的做题记录。");
+    return;
+  }
+
+  const confirmed = await showCuteDialog({
+    title: "导入学习档案吗？",
+    message: `会用档案里的 ${recordCount} 条做题记录覆盖当前浏览器记录。导入后，小 λ 会帮你继续接上学习进度。`,
+    confirmText: "导入档案",
+    cancelText: "先不导入",
+  });
+  if (!confirmed) return;
+
+  state.progress = importedProgress;
+  saveProgress();
+
+  if (importedAttempt) {
+    writeStorageJson(attemptStorageKey, importedAttempt, "浏览器无法保存导入的作答草稿。");
+  } else {
+    clearActiveAttempt();
+  }
+
+  state.draftAnswers = {};
+  state.draftLongAnswers = {};
+  state.flagged = {};
+  state.results = {};
+  state.sessionSubmitted = false;
+  state.sessionSummary = null;
+  state.restoredAttempt = false;
+
+  if (importedAttempt && restoreActiveAttempt()) {
+    renderAll();
+  } else {
+    buildQueue();
+  }
+
+  showNotice(`已导入 ${recordCount} 条学习记录。`);
+}
 function questionTypeName(type) {
   return {
     single_choice: "单选",
@@ -562,7 +747,7 @@ function recordLongAnswer(question, grade) {
   const feedback = $("feedback");
   feedback.style.display = "block";
   feedback.className = "feedback compact";
-  feedback.innerHTML = renderMarkdown(`${sessionSummaryText()}\n\n本题 ${formatScore(points)} 分，自评：${longGradeLabel(grade)}，得分 ${formatScore(earned)} 分。\n\n${question.explanation || "暂无参考答案"}`);
+  feedback.innerHTML = renderMarkdown(`本题 ${formatScore(points)} 分，自评：${longGradeLabel(grade)}，得分 ${formatScore(earned)} 分。\n\n${question.explanation || "暂无参考答案"}`);
   $("selfGrade").style.display = "flex";
 }
 
@@ -821,7 +1006,7 @@ function renderReviewFeedback(question) {
       : `本题 ${formatScore(points)} 分，自评：${longGradeLabel(result.selfGrade)}，得分 ${formatScore(result.earned)} 分。`;
     feedback.style.display = "block";
     feedback.className = "feedback compact";
-    feedback.innerHTML = renderMarkdown(`${summary}\n\n${gradeLine}\n\n综合题请点击“查看参考答案”，再按掌握情况自评。`);
+    feedback.innerHTML = renderMarkdown(`${gradeLine}\n\n综合题请点击“查看参考答案”，再按掌握情况自评。`);
     return;
   }
 
@@ -829,7 +1014,7 @@ function renderReviewFeedback(question) {
   const correct = Boolean(result?.correct);
   feedback.style.display = "block";
   feedback.className = `feedback ${correct ? "good" : result?.skipped ? "" : "bad"}`;
-  feedback.innerHTML = renderMarkdown(`${summary}\n\n本题 ${formatScore(points)} 分，得分 ${formatScore(result?.earned || 0)} 分。\n${correct ? "本题正确" : result?.skipped ? "本题未作答" : "本题错误"}\n你的答案：${result?.answer || "未作答"}\n正确答案：${question.answer}\n\n${question.explanation || "暂无解析"}`);
+  feedback.innerHTML = renderMarkdown(`本题 ${formatScore(points)} 分，得分 ${formatScore(result?.earned || 0)} 分。\n${correct ? "本题正确" : result?.skipped ? "本题未作答" : "本题错误"}\n你的答案：${result?.answer || "未作答"}\n正确答案：${question.answer}\n\n${question.explanation || "暂无解析"}`);
 }
 
 function submitSession() {
@@ -1316,7 +1501,7 @@ function bindEvents() {
       : `本题 ${formatScore(points)} 分，自评：${longGradeLabel(result.selfGrade)}，得分 ${formatScore(result.earned)} 分。`;
     $("feedback").style.display = "block";
     $("feedback").className = "feedback compact";
-    $("feedback").innerHTML = renderMarkdown(`${sessionSummaryText()}\n\n${gradeLine}\n\n${question.explanation || "暂无参考答案"}`);
+    $("feedback").innerHTML = renderMarkdown(`${gradeLine}\n\n${question.explanation || "暂无参考答案"}`);
     $("selfGrade").style.display = question.type === "long_answer" ? "flex" : "none";
   });
   $("selfGrade").addEventListener("click", (event) => {
@@ -1340,6 +1525,12 @@ function bindEvents() {
     saveProgress();
     buildQueue();
   });
+  $("exportProgress").addEventListener("click", exportLearningArchive);
+  $("importProgressTrigger").addEventListener("click", () => $("importProgressFile").click());
+  $("importProgressFile").addEventListener("change", async (event) => {
+    await importLearningArchive(event.target.files?.[0]);
+    event.target.value = "";
+  });
 }
 
 function init() {
@@ -1359,3 +1550,6 @@ function init() {
 }
 
 init();
+
+
+
